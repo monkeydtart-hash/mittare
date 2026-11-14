@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>เช็คเบี้ยประกันรถ — มิตรแท้ประกันภัย</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700;800&family=Taviraj:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--dg:#06331f;--dg2:#0a4a2e;--em:#0f6b42;--gd:#c49a3a;--gd2:#e3c477;--gdk:#7a5a12;--cr:#fbf6ea;--tx:#121a16;--tm:#56635c;--line:#dfe6e2;--bg:#f4f6f2}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--tx);font-size:16px;line-height:1.5;-webkit-text-size-adjust:100%;touch-action:manipulation}
+  button{font-family:inherit;-webkit-tap-highlight-color:transparent;cursor:pointer}
+  .hero{background:linear-gradient(135deg,#052a19 0%,#0a4a2e 60%,#0f6040 100%);color:#fff;padding:26px 18px 30px;position:relative;text-align:center}
+  .hero:after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:linear-gradient(90deg,#9c7424,#e9cf86,#b88a2c,#e9cf86,#9c7424)}
+  .eyebrow{font-size:12px;letter-spacing:2px;color:var(--gd2);font-weight:600}
+  .hero h1{font-family:'Taviraj',serif;font-size:30px;line-height:1.4;margin:4px 0 2px}
+  .hero p{margin:0;color:#d4e4da;font-size:15px}
+  .wrap{max-width:820px;margin:0 auto;padding:18px 14px 40px}
+  .step{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:14px;box-shadow:0 2px 10px rgba(6,51,31,.04)}
+  .step h2{margin:0 0 12px;font-size:17px;color:var(--dg);display:flex;align-items:center;gap:10px}
+  .num{width:28px;height:28px;border-radius:50%;background:var(--dg);color:var(--gd2);display:inline-flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;flex:0 0 28px}
+  .vehicles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media (min-width:640px){.vehicles{grid-template-columns:repeat(3,1fr)}}
+  .veh{border:2px solid var(--line);background:#fff;border-radius:14px;padding:10px 6px;text-align:center;transition:.15s;color:var(--tx)}
+  .veh svg{width:100%;height:auto;display:block}
+  .veh .nm{font-weight:700;font-size:15px;margin-top:2px}
+  .veh .sb{font-size:12px;color:var(--tm)}
+  .veh.on{border-color:var(--gd);background:var(--cr);box-shadow:0 0 0 3px rgba(196,154,58,.18)}
+  .veh .body{fill:#0f6b42;transition:.15s}
+  .veh.on .body{fill:#0a4a2e}
+  .veh .acc{fill:#e3c477}
+  .q{margin-bottom:12px}
+  .q:last-child{margin-bottom:0}
+  .q .lb{font-size:14px;color:var(--tm);margin-bottom:6px;font-weight:600}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:9px 16px;min-height:44px;font-size:15px;font-weight:600;color:var(--tx)}
+  .chip.on{background:var(--dg);border-color:var(--dg);color:#fff}
+  .hint{font-size:13px;color:var(--tm);margin-top:6px}
+  .group{margin:6px 0 10px;font-family:'Taviraj',serif;font-size:19px;font-weight:700;color:var(--dg);display:flex;align-items:center;gap:8px;flex-wrap:wrap;row-gap:0}
+  .group:before{content:"";width:5px;height:20px;border-radius:3px;background:linear-gradient(180deg,var(--gd2),var(--gd))}
+  .group small{font-family:'Sarabun',sans-serif;font-size:13px;color:var(--tm);font-weight:500;flex-basis:100%;padding-left:13px;line-height:1.4}
+  .plans{display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:18px}
+  @media (min-width:640px){.plans{grid-template-columns:1fr 1fr}}
+  .plan{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
+  .plan .top{background:var(--dg);color:#fff;padding:12px 14px;display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+  .plan.hot .top{background:linear-gradient(180deg,#e7c97c,#c49a3a);color:#2b1f05}
+  .plan .pn{font-weight:800;font-size:17px;line-height:1.35}
+  .plan .ps{font-size:12.5px;opacity:.85}
+  .tagb{font-size:11px;font-weight:800;border-radius:999px;padding:2px 9px;white-space:nowrap;background:#d93025;color:#fff}
+  .tagb.best{background:var(--dg);color:var(--gd2)}
+  .plan .price{padding:12px 14px 2px;display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+  .plan .price .fr{font-size:13px;color:var(--tm);font-weight:600}
+  .plan .price b{font-size:32px;font-weight:800;color:var(--dg);line-height:1.1}
+  .plan .price span{color:var(--tm);font-size:14px}
+  .plan .duo{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px 14px 2px}
+  .plan .duo div{background:#f3f7f4;border-radius:10px;padding:8px 10px}
+  .plan .duo small{display:block;font-size:12.5px;color:var(--tm);font-weight:600}
+  .plan .duo b{font-size:24px;color:var(--dg);font-weight:800;line-height:1.2}
+  .plan .note{padding:2px 14px 0;font-size:13px;color:var(--gdk);font-weight:600}
+  .plan ul{list-style:none;margin:10px 0 0;padding:0 14px 12px;font-size:14px;flex:1}
+  .plan li{display:flex;gap:8px;padding:5px 0;border-bottom:1px dashed #edf1ee;line-height:1.45}
+  .plan li:last-child{border-bottom:0}
+  .plan li i{font-style:normal;flex:0 0 18px;font-weight:800;color:var(--em)}
+  .cta{display:block;margin:0 14px 14px;text-align:center;background:#06c755;color:#fff;text-decoration:none;font-weight:800;border-radius:12px;padding:12px;font-size:16px}
+  .empty{text-align:center;color:var(--tm);padding:14px 10px}
+  .cat{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;margin-bottom:10px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .cat::-webkit-scrollbar{display:none}
+  .cat .chip{white-space:nowrap;flex:0 0 auto}
+  .olist{display:grid;grid-template-columns:1fr;gap:8px}
+  @media (min-width:640px){.olist{grid-template-columns:1fr 1fr}}
+  .orow{display:flex;gap:10px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:10px 12px;text-decoration:none;color:var(--tx);background:#fff}
+  .orow .tx{flex:1;min-width:0}
+  .orow .nm{font-weight:700;font-size:15px;line-height:1.35}
+  .orow .ds{font-size:12.5px;color:var(--tm);line-height:1.4;margin-top:2px}
+  .orow .pr{text-align:right;flex:0 0 auto}
+  .orow .pr small{display:block;font-size:11px;color:var(--tm)}
+  .orow .pr b{font-size:18px;color:var(--dg);font-weight:800;white-space:nowrap}
+  .orow .pr em{display:block;font-style:normal;font-size:11px;color:var(--tm)}
+  .orow .tagb{margin-left:6px;vertical-align:2px;font-size:10px;padding:1px 7px}
+  .orow{width:100%;text-align:left;font-family:inherit;font-size:inherit;cursor:pointer}
+  .orow:active{background:#f6faf7}
+  .orow .more{font-size:12.5px;color:var(--em);font-weight:700;margin-top:3px}
+  #sheet{position:fixed;inset:0;background:rgba(6,20,13,.55);z-index:50;display:none;align-items:flex-end;justify-content:center}
+  #sheet.on{display:flex}
+  .sh{background:#fff;width:100%;max-width:560px;max-height:88vh;overflow:auto;-webkit-overflow-scrolling:touch;border-radius:20px 20px 0 0;padding:22px 18px calc(16px + env(safe-area-inset-bottom));position:relative;animation:up .22s ease-out}
+  @media (min-width:640px){#sheet{align-items:center}.sh{border-radius:20px}}
+  @keyframes up{from{transform:translateY(40px);opacity:.4}to{transform:none;opacity:1}}
+  .sh:before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,#9c7424,#e9cf86,#b88a2c,#e9cf86,#9c7424);border-radius:20px 20px 0 0}
+  .shx{position:absolute;top:12px;right:12px;width:40px;height:40px;border-radius:50%;border:0;background:#eef2ef;font-size:16px;color:var(--tm)}
+  .sh h3{font-family:'Taviraj',serif;font-size:23px;color:var(--dg);margin:6px 44px 2px 0;line-height:1.4}
+  .sh .for{font-size:14px;color:var(--tm)}
+  .sh .pbox{background:var(--cr);border:1px solid #eadfc2;border-left:4px solid var(--gd);border-radius:12px;padding:12px 14px;margin:12px 0}
+  .sh .pbox small{display:block;font-size:12.5px;color:var(--gdk);font-weight:700}
+  .sh .pbox b{font-size:30px;color:var(--dg);font-weight:800;line-height:1.2}
+  .sh .pbox span{color:var(--tm);font-size:14px}
+  .sh .pbox .x{margin:6px 0 0;padding-left:18px;font-size:14px;color:var(--tx)}
+  .sh .pbox .nt{font-size:13px;color:var(--tm);margin-top:4px}
+  .sh h4{margin:4px 0 4px;font-size:15px;color:var(--dg)}
+  .sh .cov{list-style:none;margin:0;padding:0;font-size:15px}
+  .sh .cov li{display:flex;gap:10px;padding:8px 0;border-bottom:1px dashed #e6ece8;line-height:1.45}
+  .sh .cov li i{font-style:normal;color:var(--em);font-weight:800;flex:0 0 18px}
+  .sh .fine{font-size:12px;color:var(--tm);margin-top:10px}
+  .shact{margin-top:14px;position:sticky;bottom:calc(-16px - env(safe-area-inset-bottom));background:#fff;padding:10px 0 4px}
+  .shact .cta{margin:0 0 8px}
+  .shact .call{display:block;text-align:center;border:1.5px solid var(--dg);color:var(--dg);border-radius:12px;padding:11px;font-weight:800;text-decoration:none;font-size:16px}
+  .shact .who{text-align:center;font-size:12px;color:var(--tm);margin-top:8px}
+  .agent{background:linear-gradient(135deg,#052a19,#0a4a2e);color:#fff;border-radius:16px;padding:18px;text-align:center;position:relative;overflow:hidden}
+  .agent:before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,#9c7424,#e9cf86,#b88a2c,#e9cf86,#9c7424)}
+  .agent .lb{font-size:12px;letter-spacing:1.5px;color:var(--gd2);font-weight:600}
+  .agent .nm{font-family:'Taviraj',serif;font-size:22px;font-weight:700;line-height:1.45}
+  .agent .ct{font-size:15px;color:#d7e6dc;margin-top:2px}
+  .agent .ct b{color:#fff}
+  .agent a.line{display:inline-block;margin-top:12px;background:#06c755;color:#fff;text-decoration:none;font-weight:800;border-radius:12px;padding:12px 22px}
+  .disc{font-size:12px;color:var(--tm);text-align:center;margin-top:14px;line-height:1.6}
+  .hide{display:none}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="eyebrow">CAR INSURANCE CHECK</div>
+  <h1>เช็คเบี้ยประกันรถ</h1>
+  <p>เลือกรถของคุณ รู้ราคาทันที · มิตรแท้ประกันภัย</p>
+</div>
+
+<div class="wrap">
+  <div class="step">
+    <h2><span class="num">1</span>รถของคุณเป็นแบบไหน?</h2>
+    <div class="vehicles" id="vehicles"></div>
+  </div>
+
+  <div class="step hide" id="s2">
+    <h2><span class="num">2</span>ข้อมูลรถ</h2>
+    <div id="qs"></div>
+  </div>
+
+  <div class="step hide" id="s3">
+    <h2><span class="num">3</span>แผนประกันที่ทำได้สำหรับรถคุณ</h2>
+    <div id="results"></div>
+  </div>
+
+  <div class="step">
+    <h2><span class="num" style="font-size:16px">+</span>ประกันอื่นๆ จากมิตรแท้</h2>
+    <div class="cat" id="cats"></div>
+    <div class="olist" id="others"></div>
+  </div>
+
+  <div class="agent">
+    <div class="lb">สอบถาม / สมัคร กับตัวแทนโดยตรง</div>
+    <div class="nm">จาตุรนต์ สำเร็จกิจ</div>
+    <div class="ct">ตัวแทนประกันวินาศภัย มิตรแท้ประกันภัย · รหัสตัวแทน <b>PP266106</b></div>
+    <div class="ct">โทร <b>086-040-4640</b> · LINE <b>@276vlypm</b></div>
+    <a class="line" id="lineMain" href="#">ทัก LINE สอบถามเลย</a>
+  </div>
+  <div class="disc">ราคาอ้างอิงจาก Mini Catalog มิตรแท้สะดวกซื้อ อัปเดต 22 ต.ค. 2569 · ราคาที่ระบุ “เริ่มต้น” อาจเปลี่ยนตามรุ่นรถ ทุนประกัน และเงื่อนไข<br>ความคุ้มครองและเบี้ยประกันภัยเป็นไปตามเงื่อนไขกรมธรรม์และผลการพิจารณารับประกันภัยของบริษัทฯ ตัวแทนจะยืนยันราคาอีกครั้งก่อนออกกรมธรรม์</div>
+</div>
+
+<div id="sheet"><div class="sh">
+  <button class="shx" id="shClose" aria-label="ปิด">✕</button>
+  <div id="shBody"></div>
+  <div class="shact">
+    <a class="cta" id="shLine" href="#" target="_blank" rel="noopener">ทัก LINE สอบถาม / สมัคร</a>
+    <a class="call" href="tel:0860404640">โทร 086-040-4640</a>
+    <div class="who">จาตุรนต์ สำเร็จกิจ · ตัวแทนมิตรแท้ประกันภัย รหัส PP266106 · LINE @276vlypm</div>
+  </div>
+</div></div>
+<script>
+const LINE_ID='@276vlypm';
+const lineUrl = t => 'https://line.me/R/oaMessage/'+LINE_ID+'/?'+encodeURIComponent(t);
+const fmt = n => Number(n).toLocaleString('en-US',{maximumFractionDigits:2});
+const $=id=>document.getElementById(id);
+
+/* ---------- รูปรถ (SVG) ---------- */
+const wheel=(x,y,r)=>`<circle cx="${x}" cy="${y}" r="${r}" fill="#1b211e"/><circle cx="${x}" cy="${y}" r="${r*.45}" fill="#c9ccc9"/><circle cx="${x}" cy="${y}" r="${r*.18}" class="acc"/>`;
+const shadow=`<ellipse cx="100" cy="90" rx="88" ry="4" fill="#000" opacity=".08"/>`;
+const GL='#d6ebdf';
+const SVG={
+  moto:`<svg viewBox="0 0 200 100">${shadow}
+    <path d="M46 72 L92 64" stroke="#3b4540" stroke-width="5" stroke-linecap="round"/>
+    <path d="M154 72 L139 33" stroke="#3b4540" stroke-width="5" stroke-linecap="round"/>
+    <path d="M132 31 L148 28" stroke="#1b211e" stroke-width="5" stroke-linecap="round"/>
+    <rect x="90" y="55" width="30" height="15" rx="4" fill="#4a544f"/>
+    <path class="body" d="M76 60 L90 44 Q95 40 104 40 L130 40 L141 50 L127 62 Z"/>
+    <path d="M62 46 Q64 38 76 38 L104 38 L98 46 Z" fill="#1b211e"/>
+    <path class="body" d="M48 52 L66 48 L78 58 L56 60 Z"/>
+    <circle cx="145" cy="43" r="4.5" class="acc"/>
+    ${wheel(46,72,16)}${wheel(154,72,16)}</svg>`,
+  sedan:`<svg viewBox="0 0 200 100">${shadow}
+    <path class="body" d="M14 72 L14 58 Q16 50 30 48 L58 46 L77 32 Q81 29 89 29 L131 29 Q139 29 145 34 L161 46 L178 49 Q188 51 188 60 L188 72 Z"/>
+    <path d="M64 46 L81 34 L106 34 L106 46 Z M112 34 L134 34 Q138 34 142 38 L150 46 L112 46 Z" fill="${GL}"/>
+    <rect x="178" y="54" width="9" height="5" rx="2" class="acc"/>
+    ${wheel(52,74,14)}${wheel(152,74,14)}</svg>`,
+  pickup:`<svg viewBox="0 0 200 100">${shadow}
+    <path class="body" d="M12 72 L12 52 L76 52 L81 30 Q82 27 86 27 L146 27 Q151 27 154 31 L166 47 L180 49 Q189 51 189 60 L189 72 Z"/>
+    <path d="M87 32 L114 32 L114 47 L84 47 Z M119 32 L144 32 Q147 32 149 35 L158 47 L119 47 Z" fill="${GL}"/>
+    <path d="M76 52 L76 72 M116 47 L116 70" stroke="#06331f" stroke-width="2" opacity=".45"/>
+    <path d="M12 52 L76 52" stroke="#06331f" stroke-width="3" opacity=".35"/>
+    <rect x="180" y="54" width="8" height="5" rx="2" class="acc"/>
+    ${wheel(44,74,14)}${wheel(156,74,14)}</svg>`,
+  suv:`<svg viewBox="0 0 200 100">${shadow}
+    <path d="M60 20 L138 20" stroke="#3b4540" stroke-width="3" stroke-linecap="round"/>
+    <path class="body" d="M14 72 L14 50 Q15 44 24 43 L40 42 L52 27 Q55 23 62 23 L140 23 Q147 23 152 28 L164 42 L178 45 Q188 47 188 56 L188 72 Z"/>
+    <path d="M58 40 L67 28 L98 28 L98 40 Z M103 28 L138 28 Q142 28 145 31 L154 40 L103 40 Z" fill="${GL}"/>
+    <rect x="178" y="51" width="9" height="5" rx="2" class="acc"/>
+    ${wheel(48,73,16)}${wheel(154,73,16)}</svg>`,
+  ev:`<svg viewBox="0 0 200 100">${shadow}
+    <path class="body" d="M14 72 L14 60 Q16 51 32 48 L60 45 Q76 30 96 28 L128 28 Q140 29 150 38 L162 46 L180 50 Q188 52 188 61 L188 72 Z"/>
+    <path d="M68 45 Q80 34 96 33 L106 33 L106 45 Z M112 33 L128 33 Q138 34 146 42 L149 45 L112 45 Z" fill="${GL}"/>
+    <path d="M104 50 L95 62 L102 62 L98 72 L111 58 L104 58 L108 50 Z" class="acc"/>
+    ${wheel(52,74,14)}${wheel(152,74,14)}</svg>`,
+  van:`<svg viewBox="0 0 200 100">${shadow}
+    <path class="body" d="M12 72 L12 30 Q12 21 22 21 L148 21 Q158 21 164 29 L180 46 Q189 50 189 59 L189 72 Z"/>
+    <path d="M22 28 H54 V42 H22 Z M60 28 H92 V42 H60 Z M98 28 H130 V42 H98 Z M138 28 H153 Q156 28 158 31 L170 44 H138 Z" fill="${GL}"/>
+    <rect x="180" y="54" width="8" height="5" rx="2" class="acc"/>
+    ${wheel(44,74,14)}${wheel(156,74,14)}</svg>`
+};
+const VEH=[
+  {id:'moto',nm:'มอเตอร์ไซค์',sb:'ทุกยี่ห้อ'},
+  {id:'sedan',nm:'รถเก๋ง / อีโคคาร์',sb:'รถยนต์นั่งส่วนบุคคล'},
+  {id:'pickup',nm:'รถกระบะ',sb:'2 ประตู / 4 ประตู'},
+  {id:'suv',nm:'SUV / MPV',sb:'รถอเนกประสงค์'},
+  {id:'ev',nm:'รถยนต์ไฟฟ้า EV',sb:'พลังงานไฟฟ้า 100%'},
+  {id:'van',nm:'รถตู้',sb:'เชิงพาณิชย์'},
+];
+
+/* ---------- แผนประกันรถ (Mini Catalog 22/10/2569) ----------
+   price: เบี้ย (ถ้า from=true คือ "เริ่มต้น")
+   duo:   [ซ่อมอู่, ซ่อมห้าง]
+   byVeh: เบี้ยแยกตามประเภทรถ
+   ageMax / dealerAgeMax / ccMax: เงื่อนไขกรอง                          */
+const CAR=[
+  {id:'one_eco',cls:'1',nm:'มิตรแท้หนึ่งเดียว Eco Car',veh:['sedan'],duo:[9200,10200],
+   li:['ประกัน ป.1 จ่ายเบี้ยต่ำ คุ้มครองชั้น 1 ทั้งคัน','ประหยัดตั้งแต่ปีแรก','ไม่ต้องรอส่วนลดประวัติดี']},
+  {id:'one_pk',cls:'1',nm:'มิตรแท้หนึ่งเดียว รถกระบะ',veh:['pickup'],duo:[10500,13500],ageMax:15,dealerAgeMax:5,
+   li:['ประกัน ป.1 จ่ายเบี้ยถูกมาก คุ้มครองชั้น 1 ทั้งคัน','ประหยัดตั้งแต่ปีแรก','อายุรถไม่เกิน 15 ปี · ซ่อมห้างรถอายุไม่เกิน 5 ปี']},
+  {id:'one_suv',cls:'1',nm:'มิตรแท้หนึ่งเดียว SUV / MPV',veh:['suv'],duo:[11500,13600],
+   li:['ประกัน ป.1 จ่ายเบี้ยถูกมาก คุ้มครองชั้น 1 ทั้งคัน','ประหยัดตั้งแต่ปีแรก']},
+  {id:'x_eco',cls:'1',nm:'ป.1 Extra เก๋ง Eco Car',tag:'BEST SELLER',veh:['sedan'],price:13400,from:1,note:'ทุนประกัน 200,000 บาท',
+   li:['ไม่มีค่าเสียหายส่วนแรก (Deductible)','รับส่วนลดประวัติดีต่อเนื่อง สูงถึง 40%']},
+  {id:'x_small',cls:'1',nm:'ป.1 Extra เก๋งเล็ก',tag:'BEST SELLER',veh:['sedan'],price:14000,from:1,note:'ทุนประกัน 200,000 บาท',
+   li:['ไม่มีค่าเสียหายส่วนแรก (Deductible)','รับส่วนลดประวัติดีต่อเนื่อง สูงถึง 40%']},
+  {id:'x_pk',cls:'1',nm:'ป.1 Extra กระบะบรรทุก',tag:'BEST SELLER',veh:['pickup'],price:13900,from:1,note:'ทุนประกัน 200,000 บาท',
+   li:['ไม่มีค่าเสียหายส่วนแรก (Deductible)','รับส่วนลดประวัติดีต่อเนื่อง สูงถึง 50%']},
+  {id:'mile',cls:'1',nm:'ประกันภัยไมล์น้อย เก๋งเล็ก',veh:['sedan'],price:12400,from:1,note:'คำนวณเบี้ยตามระยะการขับขี่จริง',
+   li:['ตอบโจทย์คนใช้รถน้อย','คุ้มครอง ป.1 ตลอดปี','ไม่จำกัดอายุรถ เพียงเลขไมล์เข้าเงื่อนไข']},
+  {id:'ev1',cls:'1',nm:'ป.1 ซ่อมห้าง รถยนต์พลังงานไฟฟ้า',tag:'BEST SELLER',veh:['ev'],price:18800,from:1,note:'ทุนประกัน 200,000 บาท',
+   li:['ไม่มีค่าเสียหายส่วนแรก','คุ้มครองเครื่องชาร์จและสายชาร์จ สูงสุด 20,000 บาท','คุ้มครองแบตเตอรี่ ตามอายุการใช้งาน (ตามเงื่อนไขกรมธรรม์)']},
+  {id:'p2dealer',cls:'2+',nm:'มิตรแท้เพิ่มพูน 2+ ซ่อมห้าง',tag:'NEW',hot:1,sub:'ราคาพิเศษ ฉลอง 80 ปีมิตรแท้',veh:['sedan','pickup','suv'],price:8880,from:1,ageMax:10,
+   li:['ซ่อมห้าง (ศูนย์บริการมาตรฐาน)','คุ้มครองอายุรถสูงสุด 10 ปี','คุ้มครองภัยธรรมชาติ 20,000 บาท']},
+  {id:'p2',cls:'2+',nm:'มิตรแท้เพิ่มพูน 2+',veh:['sedan','pickup','suv'],price:5400,from:1,note:'ทุนประกัน 100,000 บาท',
+   li:['คุ้มครองบุคคลภายนอก สูงถึง 1 ล้านบาท','คุ้มครองรถสูญหาย / ไฟไหม้','ซ่อมรถเมื่อชนกับยานพาหนะทางบก']},
+  {id:'p3',cls:'3+',nm:'มิตรแท้เพิ่มพูน 3+',veh:['sedan','pickup','suv'],price:4200,from:1,note:'ทุนประกัน 100,000 บาท',
+   li:['คุ้มครองบุคคลภายนอก สูงสุด 1 ล้านบาท','ซ่อมรถเมื่อชนกับยานพาหนะทางบก']},
+  {id:'van3',cls:'3+',nm:'มิตรแท้ ป.3+ รถตู้เชิงพาณิชย์',veh:['van'],price:12000,from:1,note:'ทุนประกัน 100,000 บาท',
+   li:['คุ้มครองตัวรถเหมือน ป.1 แต่เบี้ยต่ำ','ฟรี! เพิ่มความคุ้มครองน้ำท่วม']},
+  {id:'vk',cls:'3',nm:'มิตรแท้วีคูณ',tag:'BEST SELLER',veh:['sedan','pickup'],byVeh:{sedan:2299,pickup:3200},
+   li:['ประกันรถยนต์ ป.3','เบี้ยถูกเป็นพิเศษ']},
+  {id:'vkp50',cls:'3',nm:'มิตรแท้วีคูณพลัส PA 50,000',veh:['sedan','pickup'],byVeh:{sedan:2600,pickup:3400},
+   li:['ประกันรถยนต์ ป.3','เพิ่มประกันอุบัติเหตุส่วนบุคคล (PA) 50,000 บาท']},
+  {id:'vkp100',cls:'3',nm:'มิตรแท้วีคูณพลัส PA 100,000',veh:['sedan','pickup'],byVeh:{sedan:2800,pickup:3600},
+   li:['ประกันรถยนต์ ป.3','เพิ่มประกันอุบัติเหตุส่วนบุคคล (PA) 100,000 บาท']},
+  {id:'m2',cls:'2+',nm:'มิตรแท้มอเตอร์ไซค์ ป.2+',veh:['moto'],price:2090,from:1,ageMax:5,ccMax:200,
+   li:['คุ้มครองรถสูญหาย / ไฟไหม้','ซ่อมรถเราเมื่อชนกับคู่กรณี และคุ้มครองคู่กรณี','เฉพาะยี่ห้อและรุ่นที่กำหนด ไม่เกิน 200 cc','อายุรถไม่เกิน 5 ปี','ยกเว้นรถจดทะเบียนบางจังหวัด (สอบถามตัวแทน)']},
+  {id:'m3p',cls:'3+',nm:'มิตรแท้มอเตอร์ไซค์ ป.3+',veh:['moto'],price:1790,from:1,ageMax:15,ccMax:200,
+   li:['ซ่อมรถเราเมื่อชนกับคู่กรณี และคุ้มครองคู่กรณี','เฉพาะยี่ห้อและรุ่นที่กำหนด ไม่เกิน 200 cc','อายุรถไม่เกิน 15 ปี','ยกเว้นรถจดทะเบียนบางจังหวัด (สอบถามตัวแทน)']},
+  {id:'m3',cls:'3',nm:'มิตรแท้มอเตอร์ไซค์ ป.3',veh:['moto'],price:1490,from:1,ccMax:110,
+   li:['คุ้มครองความเสียหายต่อคู่กรณี','เฉพาะยี่ห้อและรุ่นที่กำหนด ไม่เกิน 110 cc','ไม่จำกัดอายุรถ']},
+];
+const CLS={'1':['ประกันชั้น 1','คุ้มครองรถเราทุกกรณี ทั้งมีและไม่มีคู่กรณี'],'2+':['ประกัน 2+','ชนกับยานพาหนะมีคู่กรณี + รถหาย/ไฟไหม้'],'3+':['ประกัน 3+','ชนกับยานพาหนะมีคู่กรณี ซ่อมทั้งรถเราและคู่กรณี'],'3':['ประกัน 3','คุ้มครองคู่กรณี เบี้ยประหยัด']};
+
+/* ---------- ประกันอื่นๆ (Mini Catalog 22/10/2569) ----------
+   c=หมวด, n=ชื่อ, d=สรุป, p=เบี้ยเริ่มต้น, u=หน่วย, t=ป้าย, f=เหมาะกับ, li=ความคุ้มครอง, x=ราคาเพิ่มเติม */
+const OTHER=[
+ {c:'home',n:'อัคคีภัยที่อยู่อาศัย',t:'BEST SELLER',p:645,u:'/ปี',d:'ไฟไหม้ ฟ้าผ่า ระเบิด ภัยน้ำ ภัยธรรมชาติ',f:'บ้านเดี่ยว ทาวน์เฮ้าส์ อาคารพาณิชย์',
+  li:['ไฟไหม้ ฟ้าผ่า ระเบิด','ภัยเนื่องจากน้ำ และภัยจากอากาศยาน','ภัยจากการเฉี่ยวหรือชนของยวดยานพาหนะ','กลุ่มภัยธรรมชาติ']},
+ {c:'home',n:'บ้านมิตรแท้',t:'BEST SELLER',p:900,u:'/ปี',d:'อัคคีภัยเบี้ยต่ำ + ความรับผิดต่อบุคคลภายนอก',f:'ผู้ที่ต้องการประกันอัคคีภัย ด้วยเบี้ยต่ำแต่ได้ความคุ้มครองครบ',
+  li:['ทรัพย์สินของตัวเอง (ตัวอาคาร)','ความรับผิดต่อบุคคลภายนอก']},
+ {c:'home',n:'คอนโดมีสุข',p:700,u:'/ปี',d:'สำหรับผู้เช่าคอนโด (ทุน 100,000)',f:'ผู้เช่าคอนโด',note:'ทุนประกัน 100,000 บาท',
+  li:['ทรัพย์สินภายในห้องชุด','ชีวิต และโจรกรรม','ความรับผิดต่อบุคคลภายนอก','ภัยไฟไหม้ ฟ้าผ่า ภัยเนื่องจากน้ำ และภัยลักทรัพย์']},
+ {c:'home',n:'คอนโดเปี่ยมสุข',p:2600,u:'/ปี',d:'สำหรับเจ้าของห้องชุด (ทุน 1,000,000)',f:'เจ้าของห้องชุด',note:'ทุนประกัน 1,000,000 บาท',
+  li:['ตัวห้องชุด และทรัพย์สินภายในห้อง','ชีวิต','ความรับผิดต่อบุคคลภายนอก รวมถึงความรับผิดต่อห้องข้างเคียง']},
+ {c:'home',n:'อัคคีภัยทรัพย์สินส่วนกลาง',p:785,u:'/ปี',d:'หอพัก อพาร์ตเมนต์ แมนชั่น (ทุน 1,000,000)',f:'เจ้าของหอพัก / อพาร์ตเมนต์ / แมนชั่น',note:'ทุนประกัน 1,000,000 บาท',
+  li:['ไฟไหม้ ฟ้าผ่า ต่อทรัพย์สิน','ขยายภัย: ระเบิด ภัยเนื่องจากน้ำ อากาศยาน','การเฉี่ยวชนของยวดยานพาหนะ','ภัยธรรมชาติ และภัยต่อเครื่องใช้ไฟฟ้า']},
+ {c:'home',n:'ประกันภัยโจรกรรม',p:1000,u:'/ปี',d:'ทรัพย์สินในบ้าน แบบความเสียหายส่วนแรก (ทุน 100,000)',f:'บ้านอยู่อาศัยที่เป็นตึก หรือคอนกรีตล้วน',note:'ทุนประกัน 100,000 บาท',
+  li:['ทรัพย์สินภายในสิ่งปลูกสร้างสูญหายหรือเสียหาย','ลักทรัพย์ที่มีร่องรอยงัดแงะ ชิงทรัพย์ หรือปล้นทรัพย์','ความเสียหายต่อตัวอาคารจากการโจรกรรม']},
+
+ {c:'pa',n:'PA 700 (อบ.1)',t:'BEST SELLER',p:700,u:'/ปี',d:'อุบัติเหตุ เบี้ยประหยัด',f:'ผู้ที่ต้องการประกันอุบัติเหตุ เบี้ยไม่แพง',
+  li:['เสียชีวิตจากอุบัติเหตุ','ทุพพลภาพถาวรสิ้นเชิง','ค่าปลงศพ 10,000 บาท']},
+ {c:'pa',n:'อุบัติเหตุส่วนบุคคล PLV (อบ.1)',p:470,u:'/ปี',d:'เลือกทุนได้ ทุกอาชีพ (ทุน 100,000)',f:'ทุกอาชีพ เลือกทุนประกันได้เอง',note:'ราคาเริ่มต้นที่ทุนประกัน 100,000 บาท',
+  li:['เสียชีวิตจากอุบัติเหตุ','ทุพพลภาพถาวรสิ้นเชิงจากอุบัติเหตุ']},
+ {c:'pa',n:'มิตรแท้กระดูกแตกหัก (อบ.2)',p:1600,u:'/ปี',d:'อุบัติเหตุ + กระดูกแตกหัก',f:'ผู้ที่ต้องการความคุ้มครองอุบัติเหตุครอบคลุมกว่า อบ.1',
+  li:['คุ้มครองเช่นเดียวกับ อบ.1','เพิ่มความคุ้มครองทุพพลภาพถาวรบางส่วน','ผลประโยชน์กรณีกระดูกแตกหัก']},
+ {c:'pa',n:'ชดเชยรายได้นอนโรงพยาบาลจากอุบัติเหตุ',p:400,u:'/ปี',d:'ห้องปกติ 400/วัน · ICU 1,000/วัน',f:'คนทำงานที่ขาดรายได้เมื่อต้องนอนโรงพยาบาล',
+  li:['ผู้ป่วยใน (ห้องปกติ) ชดเชยสูงสุดวันละ 400 บาท ไม่เกิน 365 วัน/ปี','ผู้ป่วยใน (ห้อง ICU) ชดเชยสูงสุดวันละ 1,000 บาท ไม่เกิน 14 วัน/ครั้ง','รวมแล้วไม่เกิน 365 วันต่อปีกรมธรรม์']},
+ {c:'pa',n:'อุบัติเหตุและโรคร้ายแรง',t:'NEW',p:1100,u:'/ปี',d:'ดูแล 2 ความเสี่ยงในแผนเดียว',f:'อายุ 20–54 ปี',note:'ทุนประกัน 100,000 – 500,000 บาท',
+  li:['คุ้มครอง 10 โรคร้ายแรง','เงินชดเชยรายวันเมื่อนอนโรงพยาบาล','คุ้มครองอุบัติเหตุ อบ.1']},
+ {c:'pa',n:'โรคมะเร็งและอุบัติเหตุ',t:'NEW',p:462,u:'/ปี',d:'แผนมิตรแท้เพื่อคุณพลัสเซฟ',f:'ผู้ที่ต้องการเตรียมพร้อมรับมือโรคมะเร็ง',note:'ระยะรอคอย 90 วัน',
+  li:['ตรวจพบโรคมะเร็งเป็นครั้งแรก','ขยายความคุ้มครองโรคมะเร็งผิวหนัง','คุ้มครองอุบัติเหตุ']},
+ {c:'pa',n:'ไข้เลือดออก',p:300,u:'/ปี',d:'ค่ารักษาสูงสุด 100,000',f:'ทุกคนในครอบครัว',
+  li:['ค่ารักษาทั้งผู้ป่วยในและผู้ป่วยนอก สูงสุด 100,000 บาท','เงินชดเชยรายวันระหว่างนอนโรงพยาบาล สูงสุด 30 วัน']},
+ {c:'pa',n:'อุบัติเหตุผู้ขับขี่และผู้โดยสาร',p:250,u:'/ที่นั่ง/ปี',d:'รถยนต์ทุกประเภท',f:'รถยนต์ทุกประเภท เพิ่มความคุ้มครองคนในรถ',note:'เบี้ยสุทธิ 250 บาทต่อที่นั่งต่อปี',
+  li:['เสียชีวิต สูญเสียอวัยวะ ทุพพลภาพถาวร คนละ 100,000 บาท','ค่ารักษาพยาบาล คนละไม่เกิน 50,000 บาท']},
+ {c:'pa',n:'มิตรแท้เพิ่มค่า',p:590,u:'/ปี',d:'ชดเชยหลังอุบัติเหตุจากการใช้รถ',f:'ผู้ใช้รถยนต์ที่อยากได้เงินชดเชยเพิ่ม',
+  li:['ชดเชยรายได้รายวัน เมื่อเป็นผู้ป่วยใน','ชดเชยกรณีรถสูญหาย หรือเสียหายโดยสิ้นเชิง','ชดเชยค่าเดินทางระหว่างนำรถเข้าซ่อมจากอุบัติเหตุ']},
+
+ {c:'travel',n:'เดินทางต่างประเทศ',t:'NEW',p:165,u:'',d:'แผน A เดินทาง 1–7 วัน',f:'นักท่องเที่ยวไปต่างประเทศ',note:'ราคาเริ่มต้นสำหรับแผน A ระยะเดินทาง 1–7 วัน',
+  li:['ค่ารักษาพยาบาลจากอุบัติเหตุในต่างประเทศ','เที่ยวบินล่าช้า หรือพลาดการต่อเที่ยวบิน','กระเป๋าเดินทางล่าช้า สูญหาย หรือเสียหาย','เงินส่วนตัวและเอกสารการเดินทางสูญหาย']},
+ {c:'travel',n:'อุบัติเหตุการเดินทาง',p:216,u:'/กรมธรรม์',d:'ในประเทศและต่างประเทศ',f:'ผู้เดินทางทั้งในและต่างประเทศ',note:'ยกเว้น สิงคโปร์ ญี่ปุ่น เกาหลีใต้ และประเทศแถบยุโรปทุกประเทศ',
+  li:['เสียชีวิต ทุพพลภาพถาวร คนละ 100,000 บาท','ค่ารักษาพยาบาล คนละไม่เกิน 10,000 บาท']},
+ {c:'travel',n:'นักกอล์ฟ',t:'แนะนำ',p:1200,u:'/ปี',d:'คุ้มครองระหว่างออกรอบ',f:'นักกอล์ฟ ระหว่างออกรอบหรืออยู่ในสนามฝึกซ้อม',
+  li:['อุปกรณ์การเล่นกอล์ฟ 20,000 บาท','เสียชีวิตจากอุบัติเหตุ 500,000 บาท','ความรับผิดต่อบุคคลภายนอก 1,000,000 บาท','รางวัลโฮล-อิน-วัน 15,000 บาท']},
+ {c:'travel',n:'ประกันภัยสุนัข',p:1075,u:'/ปี',d:'เพื่อความอุ่นใจของคนรักสุนัข',f:'คนเลี้ยงสุนัข',
+  li:['การตายของสุนัขโดยอุบัติเหตุ','ค่ารักษาพยาบาลจากอุบัติเหตุ','ความรับผิดต่อบุคคลภายนอกอันเกิดจากสุนัข']},
+ {c:'travel',n:'อากาศยานไร้คนขับ (โดรน)',t:'BEST SELLER',p:1800,u:'/ปี',d:'ความรับผิดต่อบุคคลภายนอก',f:'ผู้บังคับโดรน',
+  li:['ชีวิต ร่างกาย การบาดเจ็บ ของบุคคลภายนอก','ทรัพย์สินของบุคคลภายนอกเสียหาย','ประกันตัวผู้บังคับโดรน']},
+ {c:'travel',n:'อุบัติเหตุกลุ่ม กิจกรรมวิ่ง / ปั่น',p:17,u:'/คน/วัน',d:'สำหรับผู้จัดงานวิ่งและปั่นจักรยาน',f:'ผู้จัดกิจกรรมวิ่ง / ปั่นจักรยาน',
+  x:['200–999 คน: วิ่ง 20 · ปั่น 25 บาท/คน/วัน','1,000 คนขึ้นไป: วิ่ง 17 · ปั่น 20 บาท/คน/วัน'],
+  li:['คุ้มครองเฉพาะระหว่างกิจกรรมวิ่ง / ปั่นจักรยาน','เสียชีวิต และทุพพลภาพถาวรจากอุบัติเหตุ','ค่ารักษาพยาบาลจากอุบัติเหตุ']},
+
+ {c:'biz',n:'ร้านอาหาร / ร้านกาแฟ',t:'NEW',p:2300,u:'/ปี',d:'ทรัพย์สินร้าน + บุคคลภายนอก',f:'เจ้าของร้านอาหารและร้านกาแฟ',
+  li:['อาคาร เฟอร์นิเจอร์ อุปกรณ์','สต็อกสินค้า และทรัพย์สินของกิจการ','ความรับผิดต่อบุคคลภายนอกที่เข้ามาใช้บริการ']},
+ {c:'biz',n:'บ้านอยู่และค้า',p:1250,u:'/ปี',d:'ร้านค้ารายย่อยที่อยู่ในบ้าน',f:'ผู้ประกอบการร้านค้ารายย่อย ที่พักอยู่ในบ้านหลังเดียวกัน',note:'ประกันอัคคีภัย + ความรับผิดต่อบุคคลภายนอก',
+  li:['ตัวอาคาร เฟอร์นิเจอร์ เครื่องตกแต่ง','สต็อกสินค้า','อุปกรณ์ เครื่องมือเครื่องใช้ ทั้งเพื่ออยู่อาศัยและทำการค้า']},
+ {c:'biz',n:'ประกันภัยร้านทอง',p:13999,u:'/ปี',d:'ชิงทรัพย์ ปล้นทรัพย์ อาคาร',f:'เจ้าของร้านทอง',
+  li:['ชิงทรัพย์ ปล้นทรัพย์ วิ่งราวทรัพย์','ความเสียหายต่ออาคาร ตู้นิรภัย กระจก เฟอร์นิเจอร์','เสียชีวิต สูญเสียอวัยวะ สายตา หรือทุพพลภาพถาวร','ค่ารักษาพยาบาล']},
+ {c:'biz',n:'ความรับผิดฯ สถานประกอบการ',t:'NEW',p:2685.70,u:'/ปี',d:'ร้านอาหาร บาร์ สถานบันเทิง',f:'ร้านอาหาร บาร์ และสถานบันเทิง',note:'เลือกได้ 3 แผน ตามลักษณะธุรกิจ',
+  li:['ความรับผิดต่อบุคคลภายนอก กรณีอาหารเป็นพิษ','อุบัติเหตุต่อลูกค้า','ทรัพย์สินของบุคคลภายนอก','ไฟไหม้ / ระเบิด']},
+ {c:'biz',n:'ความรับผิดฯ แมนชั่น / อพาร์ตเมนต์',p:2686,u:'/ปี',d:'อุบัติเหตุภายในสถานที่',f:'เจ้าของแมนชั่น / อพาร์ตเมนต์',
+  li:['ความรับผิดต่อบุคคลภายนอก จากอุบัติเหตุที่เกิดขึ้นภายในสถานที่เอาประกันภัย']},
+ {c:'biz',n:'ความรับผิดฯ ร้านอาหารทั่วไป',p:5640,u:'/ปี',d:'ลูกค้าที่มาใช้บริการ',f:'ร้านอาหารทั่วไป',
+  li:['ความเสียหายต่อบุคคลภายนอก จากอุบัติเหตุขณะเข้ามาใช้บริการภายในร้าน']},
+ {c:'biz',n:'ผู้พักในหอพัก (ตามกฎหมาย)',p:24,u:'/ผู้พัก',d:'ตามกฎหมายว่าด้วยหอพัก',f:'เจ้าของหอพักตามกฎหมายว่าด้วยหอพัก',note:'24 บาทต่อผู้พัก 1 คน · เบี้ยขั้นต่ำ 538 บาท/กรมธรรม์/ปี',
+  li:['ผู้พักบาดเจ็บหรือเสียชีวิต จากไฟไหม้ ระเบิด','ถูกฆาตกรรม หรือถูกทำร้ายร่างกาย']},
+ {c:'biz',n:'ความรับผิดของผู้ขนส่ง',t:'BEST SELLER',p:4300,u:'/ปี',d:'สินค้าเสียหายระหว่างขนส่ง',f:'ผู้รับจ้างขนส่งสินค้า',note:'ทุนประกัน 50,000 บาท/เที่ยว/คัน',
+  li:['ความเสียหายของสินค้าที่รับขนระหว่างการขนส่ง']},
+ {c:'biz',n:'การปฏิบัติงานตามสัญญา',t:'BEST SELLER',p:9132,u:'/โครงการ',d:'งานก่อสร้าง ต่อเติม ซ่อมแซม',f:'ผู้รับเหมางานก่อสร้าง งานต่อเติมซ่อมแซม',
+  li:['ประกันภัยงานก่อสร้าง ตามมูลค่าเต็มของสัญญา','ความรับผิดต่อบุคคลภายนอก: บาดเจ็บ เจ็บป่วย เสียชีวิต','ทรัพย์สินของบุคคลภายนอกเสียหายจากอุบัติเหตุ']},
+ {c:'biz',n:'อุบัติเหตุสำหรับธุรกิจนำเที่ยว',t:'BEST SELLER',p:40,u:'/นักท่องเที่ยว',d:'ธุรกิจนำเที่ยวและมัคคุเทศก์',f:'บริษัทนำเที่ยวและมัคคุเทศก์',
+  li:['นักท่องเที่ยวประสบอุบัติเหตุระหว่างท่องเที่ยว','เสียชีวิต สูญเสียอวัยวะ ทุพพลภาพถาวร คนละ 1,000,000 บาท','ค่ารักษาพยาบาล คนละไม่เกิน 500,000 บาท']},
+ {c:'biz',n:'อุบัติเหตุแรงงานต่างด้าว',p:200,u:'/ปี',d:'รายเดี่ยว / กลุ่ม',f:'นายจ้างแรงงานต่างด้าว',
+  li:['เสียชีวิต สูญเสียอวัยวะ สายตา การได้ยิน การพูด หรือทุพพลภาพถาวร','ถูกฆาตกรรม หรือถูกทำร้ายร่างกาย','ค่ารักษาพยาบาล ค่าปลงศพ และค่าใช้จ่ายจัดงานศพ']},
+ {c:'biz',n:'พ.ร.บ. ปั๊มน้ำมัน / LPG / NGV',p:2364,u:'/ปี',d:'ความรับผิดตามกฎหมาย',f:'ผู้ประกอบการสถานีบริการน้ำมัน LPG และ NGV',note:'ไม่รวมทรัพย์สินของเจ้าของปั๊ม',
+  x:['ปั๊มน้ำมัน 2,794 บาท/ปี','ปั๊ม LPG 2,364 บาท/ปี','ปั๊ม NGV 3,842 บาท/ปี'],
+  li:['ผู้ได้รับผลกระทบจากอัคคีภัยหรือการระเบิด','บาดเจ็บ เสียชีวิต และทุพพลภาพถาวร','ค่ารักษาพยาบาล']},
+ {c:'biz',n:'ผู้โดยสารเรือ (พ.ร.บ. เรือ)',p:216,u:'/กรมธรรม์',d:'เรือโดยสารที่จดทะเบียน',f:'เจ้าของเรือโดยสาร / เรือรับจ้าง',note:'เบี้ยขั้นต่ำ 216 บาทต่อกรมธรรม์',
+  li:['คุ้มครองผู้โดยสารบนเรือโดยสาร ที่จดทะเบียนถูกต้องตามข้อบังคับ']},
+];
+const CATS=[['home','บ้าน / คอนโด'],['pa','อุบัติเหตุ / สุขภาพ'],['travel','เดินทาง / ไลฟ์สไตล์'],['biz','ธุรกิจ / ร้านค้า']];
+
+/* ---------- สถานะ ---------- */
+const S={veh:null, age:'0-5', cc:'111-200', cat:'home'};
+const AGE_MAX={'0-5':5,'6-10':10,'11-15':15,'16+':99};
+const CC_MAX={'0-110':110,'111-200':200,'201+':999};
+
+function chips(key,opts){return `<div class="chips">${opts.map(([v,t])=>`<button class="chip${S[key]===v?' on':''}" data-k="${key}" data-v="${v}">${t}</button>`).join('')}</div>`;}
+
+function renderVeh(){
+  $('vehicles').innerHTML=VEH.map(v=>`<button class="veh${S.veh===v.id?' on':''}" data-veh="${v.id}">${SVG[v.id]}<div class="nm">${v.nm}</div><div class="sb">${v.sb}</div></button>`).join('');
+  $('vehicles').querySelectorAll('.veh').forEach(b=>b.onclick=()=>{
+    const first=!S.veh; S.veh=b.dataset.veh; renderVeh(); renderQs(); renderResults();
+    if(first) setTimeout(()=>$('s2').scrollIntoView({behavior:'smooth',block:'start'}),60);
+  });
+}
+function renderQs(){
+  $('s2').classList.remove('hide'); $('s3').classList.remove('hide');
+  let h=`<div class="q"><div class="lb">อายุรถ (นับจากปีจดทะเบียน)</div>${chips('age',[['0-5','ไม่เกิน 5 ปี'],['6-10','6–10 ปี'],['11-15','11–15 ปี'],['16+','มากกว่า 15 ปี']])}</div>`;
+  if(S.veh==='moto') h+=`<div class="q"><div class="lb">ขนาดเครื่องยนต์</div>${chips('cc',[['0-110','ไม่เกิน 110 cc'],['111-200','111–200 cc'],['201+','มากกว่า 200 cc']])}</div>`;
+  $('qs').innerHTML=h;
+  $('qs').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{S[b.dataset.k]=b.dataset.v;renderQs();renderResults();});
+}
+
+const vehNm=()=>VEH.find(x=>x.id===S.veh).nm;
+const ageNm=()=>({'0-5':'ไม่เกิน 5 ปี','6-10':'6–10 ปี','11-15':'11–15 ปี','16+':'มากกว่า 15 ปี'})[S.age];
+
+function renderResults(){
+  const age=AGE_MAX[S.age], cc=CC_MAX[S.cc];
+  const list=CAR.filter(p=>p.veh.includes(S.veh)
+    && (!p.ageMax || age<=p.ageMax)
+    && (S.veh!=='moto' || !p.ccMax || cc<=p.ccMax));
+  let h='';
+  if(!list.length){
+    h=`<div class="empty">ยังไม่มีแผนสำเร็จรูปสำหรับรถแบบนี้ในแค็ตตาล็อก<br>ทัก LINE ให้ตัวแทนเช็คเบี้ยให้ได้เลยครับ</div><a class="cta" href="${lineUrl(`สวัสดีครับ อยากเช็คเบี้ยประกัน${vehNm()} อายุรถ ${ageNm()}${S.veh==='moto'?' ('+S.cc+' cc)':''}`)}" target="_blank" rel="noopener">ทัก LINE ให้ตัวแทนเช็คเบี้ย</a>`;
+    $('results').innerHTML=h; return;
+  }
+  ['1','2+','3+','3'].forEach(c=>{
+    const ps=list.filter(p=>p.cls===c); if(!ps.length) return;
+    h+=`<div class="group">${CLS[c][0]} <small>${CLS[c][1]}</small></div><div class="plans">`;
+    ps.forEach(p=>{
+      let priceHtml, priceTxt;
+      if(p.duo){
+        const dealerOk = !p.dealerAgeMax || age<=p.dealerAgeMax;
+        priceHtml=`<div class="duo"><div><small>ซ่อมอู่</small><b>${fmt(p.duo[0])}</b></div>${dealerOk?`<div><small>ซ่อมห้าง</small><b>${fmt(p.duo[1])}</b></div>`:`<div><small>ซ่อมห้าง</small><span style="font-size:13px;color:var(--tm)">รถอายุเกิน ${p.dealerAgeMax} ปี</span></div>`}</div><div class="note">บาท/ปี</div>`;
+        priceTxt=`ซ่อมอู่ ${fmt(p.duo[0])}${dealerOk?' / ซ่อมห้าง '+fmt(p.duo[1]):''} บาท`;
+      } else {
+        const pr=p.byVeh?p.byVeh[S.veh]:p.price;
+        priceHtml=`<div class="price">${p.from?'<span class="fr">เริ่มต้น</span>':''}<b>${fmt(pr)}</b><span>บาท/ปี</span></div>${p.note?`<div class="note">${p.note}</div>`:''}`;
+        priceTxt=(p.from?'เริ่มต้น ':'')+fmt(pr)+' บาท';
+      }
+      const msg=`สวัสดีครับ สนใจประกันรถ\n• แผน: ${p.nm}\n• รถ: ${vehNm()} อายุ ${ageNm()}${S.veh==='moto'?' ('+S.cc+' cc)':''}\n• เบี้ยที่เห็น: ${priceTxt}\nรบกวนเช็คราคาให้หน่อยครับ`;
+      h+=`<div class="plan${p.hot?' hot':''}">
+        <div class="top"><div><div class="pn">${p.nm}</div>${p.sub?`<div class="ps">${p.sub}</div>`:''}</div>${p.tag?`<span class="tagb${p.tag==='NEW'?'':' best'}">${p.tag}</span>`:''}</div>
+        ${priceHtml}
+        <ul>${p.li.map(x=>`<li><i>✓</i><span>${x}</span></li>`).join('')}</ul>
+        <a class="cta" href="${lineUrl(msg)}" target="_blank" rel="noopener">สนใจแผนนี้ · ทัก LINE</a>
+      </div>`;
+    });
+    h+='</div>';
+  });
+  h+=`<div class="hint">ราคายังไม่รวม พ.ร.บ. · ราคา “เริ่มต้น” ขึ้นกับรุ่นรถและทุนประกัน ทัก LINE ให้ตัวแทนเช็คราคาจริงได้ฟรี</div>`;
+  $('results').innerHTML=h;
+}
+
+function renderOthers(){
+  $('cats').innerHTML=CATS.map(([k,t])=>`<button class="chip${S.cat===k?' on':''}" data-c="${k}">${t}</button>`).join('');
+  $('cats').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{S.cat=b.dataset.c;renderOthers();});
+  $('others').innerHTML=OTHER.map((o,i)=>o.c!==S.cat?'':`<button class="orow" data-i="${i}">
+      <div class="tx"><div class="nm">${o.n}${o.t?`<span class="tagb${o.t==='NEW'?'':' best'}">${o.t==='BEST SELLER'?'BEST':o.t}</span>`:''}</div><div class="ds">${o.d}</div><div class="more">ดูความคุ้มครอง ›</div></div>
+      <div class="pr"><small>เริ่มต้น</small><b>${fmt(o.p)}</b><em>บาท${o.u}</em></div></button>`).join('');
+  $('others').querySelectorAll('.orow').forEach(b=>b.onclick=()=>openSheet(+b.dataset.i));
+}
+function openSheet(i){
+  const o=OTHER[i];
+  const msg=`สวัสดีครับ สนใจ "${o.n}" (เบี้ยเริ่มต้น ${fmt(o.p)} บาท${o.u}) รบกวนขอรายละเอียดหน่อยครับ`;
+  $('shBody').innerHTML=`
+    ${o.t?`<span class="tagb${o.t==='NEW'?'':' best'}">${o.t}</span>`:''}
+    <h3>${o.n}</h3>
+    <div class="for">เหมาะกับ: ${o.f}</div>
+    <div class="pbox"><small>เบี้ยประกันเริ่มต้น</small><b>${fmt(o.p)}</b> <span>บาท${o.u}</span>
+      ${o.x?`<ul class="x">${o.x.map(t=>`<li>${t}</li>`).join('')}</ul>`:''}
+      ${o.note?`<div class="nt">${o.note}</div>`:''}</div>
+    <h4>ความคุ้มครอง</h4>
+    <ul class="cov">${o.li.map(t=>`<li><i>✓</i><span>${t}</span></li>`).join('')}</ul>
+    <div class="fine">เงื่อนไขและความคุ้มครองเป็นไปตามรายละเอียดในกรมธรรม์ ควรทำความเข้าใจก่อนตัดสินใจทำประกันทุกครั้ง</div>`;
+  $('shLine').href=lineUrl(msg);
+  $('sheet').classList.add('on'); document.body.style.overflow='hidden';
+}
+function closeSheet(){ $('sheet').classList.remove('on'); document.body.style.overflow=''; }
+$('sheet').addEventListener('click',e=>{ if(e.target.id==='sheet') closeSheet(); });
+$('shClose').onclick=closeSheet;
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeSheet(); });
+
+$('lineMain').href=lineUrl('สวัสดีครับ สนใจทำประกัน รบกวนเช็คเบี้ยให้หน่อยครับ');
+$('lineMain').target='_blank';
+renderVeh(); renderOthers();
+</script>
+</body>
+</html>
