@@ -159,6 +159,22 @@
   .cvt td:last-child{text-align:right;white-space:nowrap;font-weight:800;width:84px}
   .cvt .y{color:var(--em)}.cvt .n{color:#b3241a}.cvt .m{color:var(--gdk);font-size:12.5px}
   .sh h4{margin-top:14px}
+  .ctpbox{margin-top:16px;border:2px solid var(--gd);border-radius:16px;overflow:hidden;background:#fff}
+  .ctpbox .hd{background:linear-gradient(180deg,#e7c97c,#c49a3a);color:#2b1f05;padding:10px 14px;font-weight:800;font-size:17px;line-height:1.35}
+  .ctpbox .hd small{display:block;font-weight:600;font-size:13px;opacity:.85}
+  .ctpbox .bd{padding:12px 14px 4px;display:grid;gap:8px}
+  .ctpbox .bd.g2{grid-template-columns:1fr 1fr}
+  .ctpbox .pc{background:var(--cr);border:1px solid #eadfc2;border-radius:12px;padding:10px 12px}
+  .ctpbox .pc small{display:block;font-size:13px;color:var(--gdk);font-weight:700;line-height:1.35}
+  .ctpbox .pc b{font-size:30px;color:var(--dg);font-weight:800;line-height:1.15}
+  .ctpbox .bd.g2 .pc b{font-size:24px}
+  .ctpbox .pc span{font-size:13px;color:var(--tm);margin-left:3px}
+  .ctpbox .cv{padding:6px 14px 0;font-size:14px;color:var(--tx)}
+  .ctpbox .cv b{color:var(--em)}
+  .ctpbox .bt{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px 14px 14px}
+  .ctpbox .bt button,.ctpbox .bt a{display:block;text-align:center;border-radius:12px;padding:11px 6px;font-weight:800;font-size:15px;text-decoration:none}
+  .ctpbox .bt button{background:#fff;border:1.5px solid var(--dg);color:var(--dg)}
+  .ctpbox .bt a{background:#06c755;color:#fff;border:1.5px solid #06c755}
   .ctpme{display:block;margin-top:12px;background:#f3f7f4;border:1px solid var(--line);border-radius:12px;padding:10px 12px;text-decoration:none;color:var(--tx);font-size:14px}
   .ctpme b{color:var(--dg)}
   .ctpme span{color:var(--em);font-weight:700;white-space:nowrap}
@@ -461,10 +477,20 @@ function openPlan(id){
     `สวัสดีครับ สนใจประกันรถ\n• แผน: ${p.nm}\n• รถ: ${vehNm()} อายุ ${ageNm()}${S.veh==='moto'?' ('+S.cc+' cc)':''}\n• เบี้ยที่เห็น: ${pr.txt}\nรบกวนขอรายละเอียดความคุ้มครองครับ`);
 }
 function ctpFor(v){
-  if(v==='moto') return 'เริ่มต้น <b>161.57</b> บาท (ตามขนาด cc)';
-  if(v==='pickup') return '<b>645.21</b> (4 ประตู) / <b>967.28</b> (ตอนเดียว·ตอนครึ่ง) บาท';
-  if(v==='van') return '<b>1,182.35</b> บาท';
-  return '<b>645.21</b> บาท';
+  if(v==='moto') return CTP.find(c=>c.tiers).tiers;
+  if(v==='pickup') return [['กระบะ 4 ประตู',645.21],['กระบะตอนเดียว / ตอนครึ่ง',967.28]];
+  if(v==='van') return [['รถตู้ส่วนบุคคล',1182.35]];
+  return [['รถยนต์นั่งส่วนบุคคล',645.21]];
+}
+function ctpBox(){
+  const t=ctpFor(S.veh), many=t.length>1;
+  const msg=`สวัสดีครับ สนใจต่อ พ.ร.บ. + ภาษีรถ\n• รถ: ${vehNm()}\n• เบี้ย พ.ร.บ.: ${t.map(([n,p])=>n+' '+fmt2(p)).join(' / ')} บาท\nรบกวนเช็คยอดให้หน่อยครับ`;
+  return `<div class="ctpbox">
+    <div class="hd">+ พ.ร.บ. ${vehNm()}<small>ต้องมีทุกคันก่อนต่อภาษี · ทำพร้อมประกันรถได้เลย</small></div>
+    <div class="bd${many?' g2':''}">${t.map(([n,p])=>`<div class="pc"><small>${n}</small><b>${fmt2(p)}</b><span>บาท/ปี</span></div>`).join('')}</div>
+    <div class="cv">คุ้มครองคนเจ็บ / เสียชีวิต สูงสุด <b>504,000 บาท/คน</b></div>
+    <div class="bt"><button class="ctpCov">ดูความคุ้มครอง</button><a href="${lineUrl(msg)}" target="_blank" rel="noopener">ทัก LINE ต่อเลย</a></div>
+  </div>`;
 }
 
 /* ---------- สถานะ ---------- */
@@ -519,9 +545,10 @@ function renderResults(){
     h+='</div>';
   });
   h+=`<div class="hint">ราคายังไม่รวม พ.ร.บ. · ราคา “เริ่มต้น” ขึ้นกับรุ่นรถและทุนประกัน ทัก LINE ให้ตัวแทนเช็คราคาจริงได้ฟรี</div>`;
-  h+=`<a class="ctpme" href="#ctp">พ.ร.บ. ${vehNm()}: ${ctpFor(S.veh)} · <span>ต่อภาษีพร้อมกัน ›</span></a>`;
+  h+=ctpBox();
   $('results').innerHTML=h;
   $('results').querySelectorAll('.covb').forEach(b=>b.onclick=()=>openPlan(b.dataset.plan));
+  $('results').querySelector('.ctpCov').onclick=openCtp;
 }
 function priceOf(p){
   const age=AGE_MAX[S.age];
