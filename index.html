@@ -114,6 +114,36 @@
   .agent a.line{display:inline-block;margin-top:12px;background:#06c755;color:#fff;text-decoration:none;font-weight:800;border-radius:12px;padding:12px 22px}
   .disc{font-size:12px;color:var(--tm);text-align:center;margin-top:14px;line-height:1.6}
   .hide{display:none}
+  .hnav{display:inline-block;margin-top:12px;border:1px solid rgba(227,196,119,.6);color:var(--gd2);text-decoration:none;font-weight:700;font-size:14px;border-radius:999px;padding:7px 16px}
+  .ctpg{font-size:14px;font-weight:800;color:var(--dg);margin:14px 0 8px}
+  .ctpg:first-of-type{margin-top:2px}
+  .crow{display:flex;gap:10px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:10px 12px;text-decoration:none;color:var(--tx);background:#fff;margin-bottom:8px}
+  .crow:active{background:#f6faf7}
+  .crow .tx{flex:1;min-width:0}
+  .crow .nm{font-weight:700;font-size:15px;line-height:1.35}
+  .crow .cd{font-size:12.5px;color:var(--tm);margin-top:3px;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+  .plate{display:inline-block;font-size:11.5px;font-weight:800;border-radius:5px;padding:1px 7px;border:1.5px solid #9aa59f;background:#fff;line-height:1.5}
+  .plate.y{background:#f7d23e;border-color:#c9a616}
+  .crow .pr{text-align:right;flex:0 0 auto}
+  .crow .pr b{font-size:19px;color:var(--dg);font-weight:800;white-space:nowrap}
+  .crow .pr em{display:block;font-style:normal;font-size:11px;color:var(--tm)}
+  .tiers{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px}
+  @media (min-width:640px){.tiers{grid-template-columns:repeat(4,1fr)}}
+  .tiers div{background:#f3f7f4;border-radius:8px;padding:5px 8px}
+  .tiers small{display:block;font-size:12px;color:var(--tm);font-weight:600}
+  .tiers b{font-size:16px;color:var(--dg)}
+  .tro{background:var(--cr);border:1px solid #eadfc2;border-left:4px solid var(--gd);border-radius:12px;padding:12px 14px;margin:14px 0 4px}
+  .tro h4{margin:0 0 6px;font-size:15px;color:var(--gdk)}
+  .tro .g2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .tro .g2 div{background:#fff;border-radius:10px;padding:8px 10px}
+  .tro .g2 small{display:block;font-size:12.5px;color:var(--tm);font-weight:600}
+  .tro .g2 b{font-size:16px;color:var(--dg);line-height:1.35}
+  .tro p{margin:8px 0 0;font-size:13px;color:var(--tm)}
+  .steps4{margin:12px 0 0;padding-left:20px;font-size:14px}
+  .steps4 li{padding:3px 0}
+  .ctpme{display:block;margin-top:12px;background:#f3f7f4;border:1px solid var(--line);border-radius:12px;padding:10px 12px;text-decoration:none;color:var(--tx);font-size:14px}
+  .ctpme b{color:var(--dg)}
+  .ctpme span{color:var(--em);font-weight:700;white-space:nowrap}
 </style>
 </head>
 <body>
@@ -121,6 +151,7 @@
   <div class="eyebrow">CAR INSURANCE CHECK</div>
   <h1>เช็คเบี้ยประกันรถ</h1>
   <p>เลือกรถของคุณ รู้ราคาทันที · มิตรแท้ประกันภัย</p>
+  <a class="hnav" href="#ctp">รับต่อภาษี + พ.ร.บ. ›</a>
 </div>
 
 <div class="wrap">
@@ -139,6 +170,11 @@
     <div id="results"></div>
   </div>
 
+  <div class="step" id="ctp" style="scroll-margin-top:12px">
+    <h2><span class="num" style="font-size:16px">+</span>รับต่อภาษีรถ + พ.ร.บ.</h2>
+    <div id="ctpList"></div>
+  </div>
+
   <div class="step">
     <h2><span class="num" style="font-size:16px">+</span>ประกันอื่นๆ จากมิตรแท้</h2>
     <div class="cat" id="cats"></div>
@@ -152,7 +188,7 @@
     <div class="ct">โทร <b>086-040-4640</b> · LINE <b>@276vlypm</b></div>
     <a class="line" id="lineMain" href="#">ทัก LINE สอบถามเลย</a>
   </div>
-  <div class="disc">ราคาอ้างอิงจาก Mini Catalog มิตรแท้สะดวกซื้อ อัปเดต 22 ต.ค. 2569 · ราคาที่ระบุ “เริ่มต้น” อาจเปลี่ยนตามรุ่นรถ ทุนประกัน และเงื่อนไข<br>ความคุ้มครองและเบี้ยประกันภัยเป็นไปตามเงื่อนไขกรมธรรม์และผลการพิจารณารับประกันภัยของบริษัทฯ ตัวแทนจะยืนยันราคาอีกครั้งก่อนออกกรมธรรม์</div>
+  <div class="disc">ราคาอ้างอิงจาก Mini Catalog มิตรแท้สะดวกซื้อ อัปเดต 22 ต.ค. 2569 · เบี้ย พ.ร.บ. รวมอากรและภาษีมูลค่าเพิ่มแล้ว ค่าภาษีรถคิดตามอัตรากรมการขนส่งทางบก · ราคาที่ระบุ “เริ่มต้น” อาจเปลี่ยนตามรุ่นรถ ทุนประกัน และเงื่อนไข<br>ความคุ้มครองและเบี้ยประกันภัยเป็นไปตามเงื่อนไขกรมธรรม์และผลการพิจารณารับประกันภัยของบริษัทฯ ตัวแทนจะยืนยันราคาอีกครั้งก่อนออกกรมธรรม์</div>
 </div>
 
 <div id="sheet"><div class="sh">
@@ -347,6 +383,53 @@ const OTHER=[
 ];
 const CATS=[['home','บ้าน / คอนโด'],['pa','อุบัติเหตุ / สุขภาพ'],['travel','เดินทาง / ไลฟ์สไตล์'],['biz','ธุรกิจ / ร้านค้า']];
 
+/* ---------- พ.ร.บ. (เบี้ยรวมอากร+VAT) ---------- */
+const fmt2 = n => Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+const CTP=[
+  {g:'p',nm:'รถเก๋ง / กระบะ 4 ประตู / SUV',code:'รย.1 · รหัส 1.10',plate:['ป้ายขาว อักษรดำ','#111'],p:645.21},
+  {g:'p',nm:'กระบะตอนเดียว / ตอนครึ่ง / กระบะตู้ทึบ',code:'รย.3 · รหัส 1.40A',plate:['ป้ายขาว อักษรเขียว','#0a7a3b'],p:967.28},
+  {g:'p',nm:'รถตู้ส่วนบุคคล',code:'รย.2 · รหัส 1.20A',plate:['ป้ายขาว อักษรฟ้า','#1565c0'],p:1182.35},
+  {g:'p',nm:'มอเตอร์ไซค์',code:'รย.12 · รหัส 1.30',plate:['ป้ายขาว อักษรดำ','#111'],tiers:[['ไม่เกิน 75 cc',161.57],['75–125 cc',323.14],['125–150 cc',430.14],['เกิน 150 cc',645.21]]},
+  {g:'h',nm:'รถยนต์รับจ้าง / แท็กซี่',code:'รหัส 3.10',plate:['ป้ายเหลือง อักษรดำ','#111',1],p:2041.56},
+  {g:'h',nm:'รถตู้รับจ้าง / ให้เช่า',code:'รหัส 3.20A',plate:['ป้ายเหลือง อักษรดำ','#111',1],p:2493.10},
+  {g:'h',nm:'มอเตอร์ไซค์รับจ้าง 75–125 cc',code:'รหัส 3.30B',plate:['ป้ายเหลือง อักษรดำ','#111',1],p:376.64},
+];
+/* ตรอ. ปี 2569: รถยนต์อายุ 7 ปีเต็ม (จดปี 2562 หรือก่อน) · มอเตอร์ไซค์ 5 ปีเต็ม (จดปี 2564 หรือก่อน) */
+const TRO={year:2569,car:2562,moto:2564};
+
+function renderCtp(){
+  const row=c=>{
+    const msg=`สวัสดีครับ สนใจต่อ พ.ร.บ. + ภาษีรถ
+• รถ: ${c.nm} (${c.code})
+• เบี้ย พ.ร.บ.: ${c.p?fmt2(c.p)+' บาท':'ตามขนาด cc'}
+รบกวนเช็คยอดรวมให้หน่อยครับ`;
+    return `<a class="crow" href="${lineUrl(msg)}" target="_blank" rel="noopener"><div class="tx">
+      <div class="nm">${c.nm}</div>
+      <div class="cd"><span class="plate${c.plate[2]?' y':''}" style="color:${c.plate[1]}">${c.plate[0]}</span>${c.code}</div>
+      ${c.tiers?`<div class="tiers">${c.tiers.map(([t,p])=>`<div><small>${t}</small><b>${fmt2(p)}</b></div>`).join('')}</div>`:''}
+    </div>${c.p?`<div class="pr"><b>${fmt2(c.p)}</b><em>บาท/ปี</em></div>`:''}</a>`;
+  };
+  $('ctpList').innerHTML=`
+    <div class="ctpg">เบี้ย พ.ร.บ. รถส่วนบุคคล</div>${CTP.filter(c=>c.g==='p').map(row).join('')}
+    <div class="ctpg">รถรับจ้าง / ให้เช่า</div>${CTP.filter(c=>c.g==='h').map(row).join('')}
+    <div class="tro"><h4>รถที่ต้องตรวจสภาพ (ตรอ.) ก่อนต่อภาษี ปี ${TRO.year}</h4>
+      <div class="g2"><div><small>รถยนต์ · อายุ 7 ปีเต็ม</small><b>จดทะเบียนปี ${TRO.car}<br>หรือเก่ากว่า</b></div><div><small>มอเตอร์ไซค์ · อายุ 5 ปีเต็ม</small><b>จดทะเบียนปี ${TRO.moto}<br>หรือเก่ากว่า</b></div></div>
+    </div>
+    <ol class="steps4">
+      <li>ทัก LINE ส่งรูปป้ายภาษีเดิม หรือหน้าเล่มทะเบียนรถ</li>
+      <li>ตัวแทนแจ้งยอดรวม พ.ร.บ. + ค่าภาษีรถ</li>
+      <li>ถ้ารถอายุถึงเกณฑ์ ตรวจสภาพที่ ตรอ. ก่อน</li>
+      <li>รับป้ายภาษีใหม่ พร้อมกรมธรรม์ พ.ร.บ.</li>
+    </ol>
+    <a class="cta" style="margin:14px 0 0" href="${lineUrl('สวัสดีครับ สนใจต่อภาษีรถ + พ.ร.บ. รบกวนเช็คยอดให้หน่อยครับ')}" target="_blank" rel="noopener">ทัก LINE ต่อภาษี + พ.ร.บ.</a>`;
+}
+function ctpFor(v){
+  if(v==='moto') return 'เริ่มต้น <b>161.57</b> บาท (ตามขนาด cc)';
+  if(v==='pickup') return '<b>645.21</b> (4 ประตู) / <b>967.28</b> (ตอนเดียว·ตอนครึ่ง) บาท';
+  if(v==='van') return '<b>1,182.35</b> บาท';
+  return '<b>645.21</b> บาท';
+}
+
 /* ---------- สถานะ ---------- */
 const S={veh:null, age:'0-5', cc:'111-200', cat:'home'};
 const AGE_MAX={'0-5':5,'6-10':10,'11-15':15,'16+':99};
@@ -407,6 +490,7 @@ function renderResults(){
     h+='</div>';
   });
   h+=`<div class="hint">ราคายังไม่รวม พ.ร.บ. · ราคา “เริ่มต้น” ขึ้นกับรุ่นรถและทุนประกัน ทัก LINE ให้ตัวแทนเช็คราคาจริงได้ฟรี</div>`;
+  h+=`<a class="ctpme" href="#ctp">พ.ร.บ. ${vehNm()}: ${ctpFor(S.veh)} · <span>ต่อภาษีพร้อมกัน ›</span></a>`;
   $('results').innerHTML=h;
 }
 
@@ -441,7 +525,7 @@ document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeSheet(); });
 
 $('lineMain').href=lineUrl('สวัสดีครับ สนใจทำประกัน รบกวนเช็คเบี้ยให้หน่อยครับ');
 $('lineMain').target='_blank';
-renderVeh(); renderOthers();
+renderVeh(); renderCtp(); renderOthers();
 </script>
 </body>
 </html>
