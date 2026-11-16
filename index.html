@@ -7,177 +7,179 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700;800&family=Taviraj:wght@600;700&display=swap" rel="stylesheet">
 <style>
-  :root{--dg:#06331f;--dg2:#0a4a2e;--em:#0f6b42;--gd:#c49a3a;--gd2:#e3c477;--gdk:#7a5a12;--cr:#fbf6ea;--tx:#121a16;--tm:#56635c;--line:#dfe6e2;--bg:#f4f6f2}
+  :root{--dg:#06331f;--dg2:#0a4a2e;--em:#0f6b42;--gd:#c49a3a;--gd2:#e3c477;--gdk:#7a5a12;--cr:#fbf6ea;--crl:#eadfc2;--tx:#121a16;--tm:#56635c;--line:#dfe6e2;--soft:#f3f7f4;--bg:#f4f6f2;--ln:#06b34f;--foil:linear-gradient(90deg,#9c7424,#e9cf86,#b88a2c,#e9cf86,#9c7424);--gold:linear-gradient(180deg,#e7c97c,#c49a3a)}
   *{box-sizing:border-box}
   body{margin:0;font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--tx);font-size:16px;line-height:1.5;-webkit-text-size-adjust:100%;touch-action:manipulation}
   button{font-family:inherit;-webkit-tap-highlight-color:transparent;cursor:pointer}
-  .hero{background:linear-gradient(135deg,#052a19 0%,#0a4a2e 60%,#0f6040 100%);color:#fff;padding:26px 18px 30px;position:relative;text-align:center}
-  .hero:after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:linear-gradient(90deg,#9c7424,#e9cf86,#b88a2c,#e9cf86,#9c7424)}
+  .hide{display:none}
+
+  /* ---------- hero ---------- */
+  .hero{background:linear-gradient(135deg,#052a19 0%,#0a4a2e 60%,#0f6040 100%);color:#fff;padding:24px 18px 28px;position:relative;text-align:center}
+  .hero:after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:var(--foil)}
   .eyebrow{font-size:12px;letter-spacing:2px;color:var(--gd2);font-weight:600}
   .hero h1{font-family:'Taviraj',serif;font-size:30px;line-height:1.4;margin:4px 0 2px}
   .hero p{margin:0;color:#d4e4da;font-size:15px}
-  .wrap{max-width:820px;margin:0 auto;padding:18px 14px 40px}
-  .step{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:14px;box-shadow:0 2px 10px rgba(6,51,31,.04)}
-  .step h2{margin:0 0 12px;font-size:17px;color:var(--dg);display:flex;align-items:center;gap:10px}
+  .hnav{display:inline-flex;align-items:center;min-height:44px;margin-top:14px;border:1px solid rgba(227,196,119,.6);color:var(--gd2);text-decoration:none;font-weight:700;font-size:15px;border-radius:999px;padding:0 18px}
+
+  /* ---------- section cards ---------- */
+  .wrap{max-width:820px;margin:0 auto;padding:16px 12px 40px}
+  .step{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 14px;margin-bottom:14px;box-shadow:0 2px 10px rgba(6,51,31,.04)}
+  .step h2{margin:0 0 14px;font-size:18px;line-height:1.35;color:var(--dg);display:flex;align-items:center;gap:10px}
   .num{width:28px;height:28px;border-radius:50%;background:var(--dg);color:var(--gd2);display:inline-flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;flex:0 0 28px}
+  .num.plus{font-size:17px}
+
+  /* ---------- step 1-2 ---------- */
   .vehicles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
   @media (min-width:640px){.vehicles{grid-template-columns:repeat(3,1fr)}}
   .veh{border:2px solid var(--line);background:#fff;border-radius:14px;padding:10px 6px;text-align:center;transition:.15s;color:var(--tx)}
   .veh svg{width:100%;height:auto;display:block}
   .veh .nm{font-weight:700;font-size:15px;margin-top:2px}
-  .veh .sb{font-size:12px;color:var(--tm)}
+  .veh .sb{font-size:12.5px;color:var(--tm)}
   .veh.on{border-color:var(--gd);background:var(--cr);box-shadow:0 0 0 3px rgba(196,154,58,.18)}
   .veh .body{fill:#0f6b42;transition:.15s}
   .veh.on .body{fill:#0a4a2e}
   .veh .acc{fill:#e3c477}
-  .q{margin-bottom:12px}
+  .q{margin-bottom:14px}
   .q:last-child{margin-bottom:0}
-  .q .lb{font-size:14px;color:var(--tm);margin-bottom:6px;font-weight:600}
+  .q .lb{font-size:14px;color:var(--tm);margin-bottom:8px;font-weight:600}
   .chips{display:flex;flex-wrap:wrap;gap:8px}
   .chip{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:9px 16px;min-height:44px;font-size:15px;font-weight:600;color:var(--tx)}
   .chip.on{background:var(--dg);border-color:var(--dg);color:#fff}
-  .hint{font-size:13px;color:var(--tm);margin-top:6px}
-  .group{margin:6px 0 10px;font-family:'Taviraj',serif;font-size:19px;font-weight:700;color:var(--dg);display:flex;align-items:center;gap:8px;flex-wrap:wrap;row-gap:0}
+  .hint{font-size:13px;color:var(--tm);line-height:1.55}
+  .empty{text-align:center;color:var(--tm);padding:6px 10px 14px}
+
+  /* ---------- buttons ---------- */
+  .btn,.cta{display:flex;align-items:center;justify-content:center;min-height:48px;border-radius:12px;padding:6px 8px;font-weight:800;font-size:15px;line-height:1.3;text-align:center;text-decoration:none;border:1.5px solid var(--dg);background:#fff;color:var(--dg)}
+  .btn.ln,.cta{background:var(--ln);border-color:var(--ln);color:#fff}
+  .btn:active,.cta:active{filter:brightness(.95)}
+  .cta{flex-direction:column;min-height:52px;font-size:16px;padding:8px 12px}
+  .cta small{font-size:13px;font-weight:600;opacity:.95}
+  .acts{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 14px 14px}
+
+  /* ---------- step 3: plan cards ---------- */
+  .group{margin:4px 0 10px;font-family:'Taviraj',serif;font-size:19px;font-weight:700;color:var(--dg);display:flex;align-items:center;gap:8px;flex-wrap:wrap;row-gap:0}
   .group:before{content:"";width:5px;height:20px;border-radius:3px;background:linear-gradient(180deg,var(--gd2),var(--gd))}
   .group small{font-family:'Sarabun',sans-serif;font-size:13px;color:var(--tm);font-weight:500;flex-basis:100%;padding-left:13px;line-height:1.4}
-  .plans{display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:18px}
+  .plans{display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:20px}
   @media (min-width:640px){.plans{grid-template-columns:1fr 1fr}}
-  .plan{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
-  .plan .top{background:var(--dg);color:#fff;padding:12px 14px;display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
-  .plan.hot .top{background:linear-gradient(180deg,#e7c97c,#c49a3a);color:#2b1f05}
+  .plan{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
+  .plan .top{background:var(--dg);color:#fff;padding:11px 14px;display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+  .plan.hot .top{background:var(--gold);color:#2b1f05}
   .plan .pn{font-weight:800;font-size:17px;line-height:1.35}
-  .plan .ps{font-size:12.5px;opacity:.85}
-  .tagb{font-size:11px;font-weight:800;border-radius:999px;padding:2px 9px;white-space:nowrap;background:#d93025;color:#fff}
+  .plan .ps{font-size:13px;opacity:.9}
+  .tagb{display:inline-block;font-size:11px;font-weight:800;border-radius:999px;padding:2px 9px;white-space:nowrap;background:#d93025;color:#fff}
   .tagb.best{background:var(--dg);color:var(--gd2)}
-  .plan .price{padding:12px 14px 2px;display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+  .plan .top .tagb{margin-top:3px}
+  .plan .top .tagb.best{background:var(--gd2);color:var(--dg)}
+  .plan .price{padding:12px 14px 0;display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
   .plan .price .fr{font-size:13px;color:var(--tm);font-weight:600}
   .plan .price b{font-size:32px;font-weight:800;color:var(--dg);line-height:1.1}
   .plan .price span{color:var(--tm);font-size:14px}
-  .plan .duo{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px 14px 2px}
-  .plan .duo div{background:#f3f7f4;border-radius:10px;padding:8px 10px}
+  .plan .duo{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px 14px 0}
+  .plan .duo div{background:var(--soft);border-radius:10px;padding:8px 10px}
   .plan .duo small{display:block;font-size:12.5px;color:var(--tm);font-weight:600}
   .plan .duo b{font-size:24px;color:var(--dg);font-weight:800;line-height:1.2}
-  .plan .note{padding:2px 14px 0;font-size:13px;color:var(--gdk);font-weight:600}
-  .plan ul{list-style:none;margin:10px 0 0;padding:0 14px 12px;font-size:14px;flex:1}
+  .plan .duo span{display:block;font-size:13px;color:var(--tm);line-height:1.4;padding-top:3px}
+  .plan .note{padding:4px 14px 0;font-size:13px;color:var(--gdk);font-weight:600}
+  .plan ul{list-style:none;margin:8px 0 0;padding:0 14px 10px;font-size:14px;flex:1}
   .plan li{display:flex;gap:8px;padding:5px 0;border-bottom:1px dashed #edf1ee;line-height:1.45}
   .plan li:last-child{border-bottom:0}
   .plan li i{font-style:normal;flex:0 0 18px;font-weight:800;color:var(--em)}
-  .cta{display:block;margin:0 14px 14px;text-align:center;background:#06c755;color:#fff;text-decoration:none;font-weight:800;border-radius:12px;padding:12px;font-size:16px}
-  .empty{text-align:center;color:var(--tm);padding:14px 10px}
-  .cat{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;margin-bottom:10px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+
+  /* ---------- gold compulsory-insurance card under the plans ---------- */
+  .ctpbox{margin-top:14px;border:2px solid var(--gd);border-radius:14px;overflow:hidden;background:#fff}
+  .ctpbox .hd{background:var(--gold);color:#2b1f05;padding:10px 14px;font-weight:800;font-size:17px;line-height:1.35}
+  .ctpbox .hd small{display:block;font-weight:600;font-size:13px;opacity:.9}
+  .ctpbox .bd{padding:12px 14px 0;display:grid;gap:8px}
+  .ctpbox .bd.g2{grid-template-columns:1fr 1fr}
+  .ctpbox .pc{background:var(--cr);border:1px solid var(--crl);border-radius:12px;padding:9px 12px;display:flex;flex-direction:column;justify-content:space-between}
+  .ctpbox .pc small{display:block;font-size:13px;color:var(--gdk);font-weight:700;line-height:1.35}
+  .ctpbox .pc b{font-size:28px;color:var(--dg);font-weight:800;line-height:1.2}
+  .ctpbox .pc span{font-size:13px;color:var(--tm);margin-left:4px}
+  .ctpbox .bd.g2 .pc b{font-size:23px;margin-top:2px}
+  .ctpbox .bd.g2 .pc span{display:block;margin:0;font-size:12.5px;line-height:1.3}
+  .ctpbox .cv{padding:10px 14px 12px;font-size:14px;color:var(--tx)}
+  .ctpbox .cv b{color:var(--em);white-space:nowrap}
+
+  /* ---------- list rows (compulsory prices + other products) ---------- */
+  .orow,.crow{display:flex;gap:10px;align-items:center;width:100%;text-align:left;border:1px solid var(--line);border-radius:12px;padding:10px 12px;color:var(--tx);background:#fff;font-family:inherit;font-size:inherit}
+  .orow:active{background:#f6faf7}
+  .crow{margin-bottom:8px}
+  .crow.wrapt{display:block}
+  .orow .tx,.crow .tx{flex:1;min-width:0}
+  .orow .nm,.crow .nm{font-weight:700;font-size:15px;line-height:1.35}
+  .orow .pr,.crow .pr{text-align:right;flex:0 0 auto;line-height:1.3}
+  .orow .pr b,.crow .pr b{font-size:19px;color:var(--dg);font-weight:800;white-space:nowrap}
+  .orow .pr small,.orow .pr em,.crow .pr em{display:block;font-style:normal;font-size:12px;color:var(--tm)}
+  .orow .ds{font-size:13px;color:var(--tm);line-height:1.4;margin-top:2px}
+  .orow .more{font-size:13px;color:var(--em);font-weight:700;margin-top:4px}
+  .orow .tagb{margin-left:6px;vertical-align:2px;font-size:10px;padding:1px 7px}
+  .crow .cd{font-size:12.5px;color:var(--tm);margin-top:4px;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+  .plate{display:inline-block;font-size:11.5px;font-weight:800;border-radius:5px;padding:1px 7px;border:1.5px solid #9aa59f;background:#fff;line-height:1.5}
+  .plate.y{background:#f7d23e;border-color:#c9a616}
+  .tiers{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px}
+  @media (min-width:640px){.tiers{grid-template-columns:repeat(4,1fr)}}
+  .tiers div{background:var(--soft);border-radius:8px;padding:5px 10px}
+  .tiers small{display:block;font-size:12.5px;color:var(--tm);font-weight:600}
+  .tiers b{font-size:17px;color:var(--dg);font-weight:800}
+
+  /* ---------- tax renewal section ---------- */
+  .ctpcov{display:grid;gap:2px;width:100%;text-align:left;background:var(--dg);color:#d7e6dc;border:0;border-radius:12px;padding:12px 14px;font-size:13.5px;line-height:1.45}
+  .ctpcov b,.ctpcov span{grid-column:1/-1}
+  .ctpcov b{font-size:16px;line-height:1.4;color:var(--gd2)}
+  .ctpcov .ar{font-weight:800;font-size:13px;white-space:nowrap;color:#fff;background:rgba(255,255,255,.16);border-radius:999px;padding:6px 12px;justify-self:start;margin-top:4px}
+  .ctpg{font-size:14px;font-weight:800;color:var(--dg);margin:16px 0 8px}
+  .tro1{background:var(--cr);border:1px solid var(--crl);border-left:4px solid var(--gd);border-radius:10px;padding:9px 12px;margin:12px 0 14px;font-size:13.5px;line-height:1.5}
+  .tro1 b{color:var(--gdk);display:block}
+
+  /* ---------- other products ---------- */
+  .cat{display:flex;gap:8px;overflow-x:auto;margin:0 -14px 10px;padding:0 14px 4px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
   .cat::-webkit-scrollbar{display:none}
   .cat .chip{white-space:nowrap;flex:0 0 auto}
   .olist{display:grid;grid-template-columns:1fr;gap:8px}
   @media (min-width:640px){.olist{grid-template-columns:1fr 1fr}}
-  .orow{display:flex;gap:10px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:10px 12px;text-decoration:none;color:var(--tx);background:#fff}
-  .orow .tx{flex:1;min-width:0}
-  .orow .nm{font-weight:700;font-size:15px;line-height:1.35}
-  .orow .ds{font-size:12.5px;color:var(--tm);line-height:1.4;margin-top:2px}
-  .orow .pr{text-align:right;flex:0 0 auto}
-  .orow .pr small{display:block;font-size:11px;color:var(--tm)}
-  .orow .pr b{font-size:18px;color:var(--dg);font-weight:800;white-space:nowrap}
-  .orow .pr em{display:block;font-style:normal;font-size:11px;color:var(--tm)}
-  .orow .tagb{margin-left:6px;vertical-align:2px;font-size:10px;padding:1px 7px}
-  .orow{width:100%;text-align:left;font-family:inherit;font-size:inherit;cursor:pointer}
-  .orow:active{background:#f6faf7}
-  .orow .more{font-size:12.5px;color:var(--em);font-weight:700;margin-top:3px}
+
+  /* ---------- bottom sheet ---------- */
   #sheet{position:fixed;inset:0;background:rgba(6,20,13,.55);z-index:50;display:none;align-items:flex-end;justify-content:center}
   #sheet.on{display:flex}
-  .sh{background:#fff;width:100%;max-width:560px;max-height:88vh;overflow:auto;-webkit-overflow-scrolling:touch;border-radius:20px 20px 0 0;padding:22px 18px calc(16px + env(safe-area-inset-bottom));position:relative;animation:up .22s ease-out}
+  .sh{background:#fff;width:100%;max-width:560px;max-height:88vh;overflow:auto;-webkit-overflow-scrolling:touch;border-radius:20px 20px 0 0;padding:22px 16px calc(12px + env(safe-area-inset-bottom));position:relative;animation:up .22s ease-out}
   @media (min-width:640px){#sheet{align-items:center}.sh{border-radius:20px}}
   @keyframes up{from{transform:translateY(40px);opacity:.4}to{transform:none;opacity:1}}
-  .sh:before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,#9c7424,#e9cf86,#b88a2c,#e9cf86,#9c7424);border-radius:20px 20px 0 0}
-  .shx{position:absolute;top:12px;right:12px;width:40px;height:40px;border-radius:50%;border:0;background:#eef2ef;font-size:16px;color:var(--tm)}
-  .sh h3{font-family:'Taviraj',serif;font-size:23px;color:var(--dg);margin:6px 44px 2px 0;line-height:1.4}
-  .sh .for{font-size:14px;color:var(--tm)}
-  .sh .pbox{background:var(--cr);border:1px solid #eadfc2;border-left:4px solid var(--gd);border-radius:12px;padding:12px 14px;margin:12px 0}
-  .sh .pbox small{display:block;font-size:12.5px;color:var(--gdk);font-weight:700}
-  .sh .pbox b{font-size:30px;color:var(--dg);font-weight:800;line-height:1.2}
+  .sh:before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:var(--foil);border-radius:20px 20px 0 0}
+  .shx{position:absolute;top:10px;right:10px;width:44px;height:44px;border-radius:50%;border:0;background:#eef2ef;font-size:16px;color:var(--tm);z-index:1}
+  .sh h3{font-family:'Taviraj',serif;font-size:22px;color:var(--dg);margin:4px 46px 4px 0;line-height:1.4}
+  .sh .for{font-size:14px;color:var(--tm);line-height:1.5}
+  .sh .pbox{background:var(--cr);border:1px solid var(--crl);border-left:4px solid var(--gd);border-radius:12px;padding:10px 14px;margin:12px 0 4px}
+  .sh .pbox small{display:block;font-size:13px;color:var(--gdk);font-weight:700}
+  .sh .pbox b{font-size:28px;color:var(--dg);font-weight:800;line-height:1.25}
   .sh .pbox span{color:var(--tm);font-size:14px}
+  .sh .pbox .pd{display:flex;gap:10px 28px;flex-wrap:wrap;margin-top:2px}
+  .sh .pbox .pd small{color:var(--tm);font-weight:600}
+  .sh .pbox .pd span{display:block;padding:6px 0}
   .sh .pbox .x{margin:6px 0 0;padding-left:18px;font-size:14px;color:var(--tx)}
   .sh .pbox .nt{font-size:13px;color:var(--tm);margin-top:4px}
-  .sh h4{margin:4px 0 4px;font-size:15px;color:var(--dg)}
+  .sh h4{margin:16px 0 2px;font-size:15px;line-height:1.45;color:var(--dg)}
   .sh .cov{list-style:none;margin:0;padding:0;font-size:15px}
   .sh .cov li{display:flex;gap:10px;padding:8px 0;border-bottom:1px dashed #e6ece8;line-height:1.45}
   .sh .cov li i{font-style:normal;color:var(--em);font-weight:800;flex:0 0 18px}
-  .sh .fine{font-size:12px;color:var(--tm);margin-top:10px}
-  .shact{margin-top:14px;position:sticky;bottom:calc(-16px - env(safe-area-inset-bottom));background:#fff;padding:10px 0 4px}
-  .shact .cta{margin:0 0 8px}
-  .shact .call{display:block;text-align:center;border:1.5px solid var(--dg);color:var(--dg);border-radius:12px;padding:11px;font-weight:800;text-decoration:none;font-size:16px}
-  .shact .who{text-align:center;font-size:12px;color:var(--tm);margin-top:8px}
-  .agent{background:linear-gradient(135deg,#052a19,#0a4a2e);color:#fff;border-radius:16px;padding:18px;text-align:center;position:relative;overflow:hidden}
-  .agent:before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,#9c7424,#e9cf86,#b88a2c,#e9cf86,#9c7424)}
-  .agent .lb{font-size:12px;letter-spacing:1.5px;color:var(--gd2);font-weight:600}
-  .agent .nm{font-family:'Taviraj',serif;font-size:22px;font-weight:700;line-height:1.45}
+  .cvt{width:100%;border-collapse:collapse;font-size:15px}
+  .cvt td{padding:8px 0;border-bottom:1px dashed #e6ece8;vertical-align:top;line-height:1.45}
+  .cvt td:last-child{text-align:right;white-space:nowrap;font-weight:800;font-size:14px;padding-left:10px}
+  .cvt .y{color:var(--em)}.cvt .n{color:#b3241a}.cvt .m{color:var(--gdk)}
+  .sh .fine,.sh .who{font-size:12.5px;color:var(--tm);margin-top:12px;line-height:1.55}
+  .sh .who{text-align:center;margin-top:8px}
+  .shact{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;position:sticky;bottom:calc(-12px - env(safe-area-inset-bottom));background:#fff;padding:10px 0 12px;box-shadow:0 -10px 10px -6px rgba(255,255,255,.95)}
+  .shact .btn{white-space:nowrap}
+
+  /* ---------- agent + disclaimer ---------- */
+  .agent{background:linear-gradient(135deg,#052a19,#0a4a2e);color:#fff;border-radius:16px;padding:20px 16px;text-align:center;position:relative;overflow:hidden}
+  .agent:before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--foil)}
+  .agent .lb{font-size:13px;letter-spacing:.5px;color:var(--gd2);font-weight:600}
+  .agent .nm{font-family:'Taviraj',serif;font-size:22px;font-weight:700;line-height:1.45;margin-top:2px}
   .agent .ct{font-size:15px;color:#d7e6dc;margin-top:2px}
   .agent .ct b{color:#fff}
-  .agent a.line{display:inline-block;margin-top:12px;background:#06c755;color:#fff;text-decoration:none;font-weight:800;border-radius:12px;padding:12px 22px}
-  .disc{font-size:12px;color:var(--tm);text-align:center;margin-top:14px;line-height:1.6}
-  .hide{display:none}
-  .hnav{display:inline-block;margin-top:12px;border:1px solid rgba(227,196,119,.6);color:var(--gd2);text-decoration:none;font-weight:700;font-size:14px;border-radius:999px;padding:7px 16px}
-  .ctpg{font-size:14px;font-weight:800;color:var(--dg);margin:14px 0 8px}
-  .ctpg:first-of-type{margin-top:2px}
-  .crow{display:flex;gap:10px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:10px 12px;text-decoration:none;color:var(--tx);background:#fff;margin-bottom:8px}
-  .crow:active{background:#f6faf7}
-  .crow .tx{flex:1;min-width:0}
-  .crow .nm{font-weight:700;font-size:15px;line-height:1.35}
-  .crow .cd{font-size:12.5px;color:var(--tm);margin-top:3px;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
-  .plate{display:inline-block;font-size:11.5px;font-weight:800;border-radius:5px;padding:1px 7px;border:1.5px solid #9aa59f;background:#fff;line-height:1.5}
-  .plate.y{background:#f7d23e;border-color:#c9a616}
-  .crow .pr{text-align:right;flex:0 0 auto}
-  .crow .pr b{font-size:19px;color:var(--dg);font-weight:800;white-space:nowrap}
-  .crow .pr em{display:block;font-style:normal;font-size:11px;color:var(--tm)}
-  .tiers{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px}
-  @media (min-width:640px){.tiers{grid-template-columns:repeat(4,1fr)}}
-  .tiers div{background:#f3f7f4;border-radius:8px;padding:5px 8px}
-  .tiers small{display:block;font-size:12px;color:var(--tm);font-weight:600}
-  .tiers b{font-size:16px;color:var(--dg)}
-  .tro{background:var(--cr);border:1px solid #eadfc2;border-left:4px solid var(--gd);border-radius:12px;padding:12px 14px;margin:14px 0 4px}
-  .tro h4{margin:0 0 6px;font-size:15px;color:var(--gdk)}
-  .tro .g2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-  .tro .g2 div{background:#fff;border-radius:10px;padding:8px 10px}
-  .tro .g2 small{display:block;font-size:12.5px;color:var(--tm);font-weight:600}
-  .tro .g2 b{font-size:16px;color:var(--dg);line-height:1.35}
-  .tro p{margin:8px 0 0;font-size:13px;color:var(--tm)}
-  .steps4{margin:12px 0 0;padding-left:20px;font-size:14px}
-  .steps4 li{padding:3px 0}
-  .dlt{display:flex;gap:10px;align-items:center;margin-top:12px;border:1.5px solid var(--dg);border-radius:12px;padding:10px 12px;text-decoration:none;color:var(--tx)}
-  .dlt .tx{flex:1;font-size:13px;color:var(--tm);line-height:1.45}
-  .dlt .tx b{display:block;font-size:15px;color:var(--dg)}
-  .dlt .ar{font-weight:800;color:var(--dg);font-size:18px}
-  .crow.plain{padding:9px 12px;margin-bottom:6px}
-  .crow .sub2{font-size:12.5px;color:var(--tm);margin-top:3px;line-height:1.5}
-  .ctpcov{display:flex;gap:10px;align-items:center;width:100%;text-align:left;background:var(--dg);color:#fff;border:0;border-radius:12px;padding:12px 14px;margin-bottom:12px;font-size:14px}
-  .ctpcov .tx{flex:1;line-height:1.45}
-  .ctpcov b{display:block;font-size:16px;color:var(--gd2)}
-  .ctpcov .ar{font-weight:800;font-size:13px;white-space:nowrap;background:rgba(255,255,255,.14);border-radius:999px;padding:5px 10px}
-  .tro1{background:var(--cr);border:1px solid #eadfc2;border-left:4px solid var(--gd);border-radius:10px;padding:9px 12px;margin:10px 0 0;font-size:13.5px;line-height:1.5}
-  .tro1 b{color:var(--gdk)}
-  .covb{display:block;width:calc(100% - 28px);margin:0 14px 8px;background:#fff;border:1.5px solid var(--dg);color:var(--dg);border-radius:12px;padding:10px;font-weight:800;font-size:15px}
-  .cvt{width:100%;border-collapse:collapse;font-size:14px;margin-top:4px}
-  .cvt td{padding:8px 4px;border-bottom:1px dashed #e6ece8;vertical-align:top;line-height:1.4}
-  .cvt td:last-child{text-align:right;white-space:nowrap;font-weight:800;width:84px}
-  .cvt .y{color:var(--em)}.cvt .n{color:#b3241a}.cvt .m{color:var(--gdk);font-size:12.5px}
-  .sh h4{margin-top:14px}
-  .ctpbox{margin-top:16px;border:2px solid var(--gd);border-radius:16px;overflow:hidden;background:#fff}
-  .ctpbox .hd{background:linear-gradient(180deg,#e7c97c,#c49a3a);color:#2b1f05;padding:10px 14px;font-weight:800;font-size:17px;line-height:1.35}
-  .ctpbox .hd small{display:block;font-weight:600;font-size:13px;opacity:.85}
-  .ctpbox .bd{padding:12px 14px 4px;display:grid;gap:8px}
-  .ctpbox .bd.g2{grid-template-columns:1fr 1fr}
-  .ctpbox .pc{background:var(--cr);border:1px solid #eadfc2;border-radius:12px;padding:10px 12px}
-  .ctpbox .pc small{display:block;font-size:13px;color:var(--gdk);font-weight:700;line-height:1.35}
-  .ctpbox .pc b{font-size:30px;color:var(--dg);font-weight:800;line-height:1.15}
-  .ctpbox .bd.g2 .pc b{font-size:24px}
-  .ctpbox .pc span{font-size:13px;color:var(--tm);margin-left:3px}
-  .ctpbox .cv{padding:6px 14px 0;font-size:14px;color:var(--tx)}
-  .ctpbox .cv b{color:var(--em)}
-  .ctpbox .bt{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px 14px 14px}
-  .ctpbox .bt button,.ctpbox .bt a{display:block;text-align:center;border-radius:12px;padding:11px 6px;font-weight:800;font-size:15px;text-decoration:none}
-  .ctpbox .bt button{background:#fff;border:1.5px solid var(--dg);color:var(--dg)}
-  .ctpbox .bt a{background:#06c755;color:#fff;border:1.5px solid #06c755}
-  .ctpme{display:block;margin-top:12px;background:#f3f7f4;border:1px solid var(--line);border-radius:12px;padding:10px 12px;text-decoration:none;color:var(--tx);font-size:14px}
-  .ctpme b{color:var(--dg)}
-  .ctpme span{color:var(--em);font-weight:700;white-space:nowrap}
+  .agent .cta{margin-top:14px}
+  .disc{font-size:12.5px;color:var(--tm);text-align:center;margin-top:14px;line-height:1.6}
 </style>
 </head>
 <body>
@@ -205,12 +207,12 @@
   </div>
 
   <div class="step" id="ctp" style="scroll-margin-top:12px">
-    <h2><span class="num" style="font-size:16px">+</span>รับต่อภาษีรถ + พ.ร.บ.</h2>
+    <h2><span class="num plus">+</span>รับต่อภาษีรถ + พ.ร.บ.</h2>
     <div id="ctpList"></div>
   </div>
 
   <div class="step">
-    <h2><span class="num" style="font-size:16px">+</span>ประกันอื่นๆ จากมิตรแท้</h2>
+    <h2><span class="num plus">+</span>ประกันอื่นๆ จากมิตรแท้</h2>
     <div class="cat" id="cats"></div>
     <div class="olist" id="others"></div>
   </div>
@@ -218,9 +220,9 @@
   <div class="agent">
     <div class="lb">สอบถาม / สมัคร กับตัวแทนโดยตรง</div>
     <div class="nm">จาตุรนต์ สำเร็จกิจ</div>
-    <div class="ct">ตัวแทนประกันวินาศภัย มิตรแท้ประกันภัย · รหัสตัวแทน <b>PP266106</b></div>
+    <div class="ct">ตัวแทนประกันวินาศภัย มิตรแท้ประกันภัย · <span style="white-space:nowrap">รหัสตัวแทน <b>PP266106</b></span></div>
     <div class="ct">โทร <b>086-040-4640</b> · LINE <b>@276vlypm</b></div>
-    <a class="line" id="lineMain" href="#">ทัก LINE สอบถามเลย</a>
+    <a class="cta" id="lineMain" href="#">ทัก LINE สอบถามเลย</a>
   </div>
   <div class="disc">ราคาอ้างอิงจาก Mini Catalog มิตรแท้สะดวกซื้อ อัปเดต 22 ต.ค. 2569 · เบี้ย พ.ร.บ. รวมอากรและภาษีมูลค่าเพิ่มแล้ว ค่าภาษีรถคิดตามอัตรากรมการขนส่งทางบก · ราคาที่ระบุ “เริ่มต้น” อาจเปลี่ยนตามรุ่นรถ ทุนประกัน และเงื่อนไข<br>ความคุ้มครองและเบี้ยประกันภัยเป็นไปตามเงื่อนไขกรมธรรม์และผลการพิจารณารับประกันภัยของบริษัทฯ ตัวแทนจะยืนยันราคาอีกครั้งก่อนออกกรมธรรม์</div>
 </div>
@@ -228,10 +230,10 @@
 <div id="sheet"><div class="sh">
   <button class="shx" id="shClose" aria-label="ปิด">✕</button>
   <div id="shBody"></div>
+  <div class="who">จาตุรนต์ สำเร็จกิจ · ตัวแทนมิตรแท้ประกันภัย รหัส PP266106 · LINE @276vlypm</div>
   <div class="shact">
-    <a class="cta" id="shLine" href="#" target="_blank" rel="noopener">ทัก LINE สอบถาม / สมัคร</a>
-    <a class="call" href="tel:0860404640">โทร 086-040-4640</a>
-    <div class="who">จาตุรนต์ สำเร็จกิจ · ตัวแทนมิตรแท้ประกันภัย รหัส PP266106 · LINE @276vlypm</div>
+    <a class="btn" href="tel:0860404640">โทร 086-040-4640</a>
+    <a class="btn ln" id="shLine" href="#" target="_blank" rel="noopener">ทัก LINE สอบถาม</a>
   </div>
 </div></div>
 <script>
@@ -432,16 +434,18 @@ const CTP=[
 const TRO={year:2569,car:2562,moto:2564};
 
 function renderCtp(){
-  const row=c=>`<div class="crow plain"><div class="tx">
-      <div class="nm">${c.nm}</div>
-      ${c.tiers?`<div class="sub2">${c.tiers.map(([t,p])=>`${t} <b>${fmt2(p)}</b>`).join(' · ')}</div>`:`<div class="cd"><span class="plate${c.plate[2]?' y':''}" style="color:${c.plate[1]}">${c.plate[0]}</span></div>`}
-    </div>${c.p?`<div class="pr"><b>${fmt2(c.p)}</b><em>บาท/ปี</em></div>`:''}</div>`;
+  const plate=c=>`<span class="plate${c.plate[2]?' y':''}" style="color:${c.plate[1]}">${c.plate[0]}</span>`;
+  const row=c=>c.tiers
+    ?`<div class="crow wrapt"><div class="nm">${c.nm}</div><div class="cd">${plate(c)} บาท/ปี ตามขนาดเครื่องยนต์</div>
+      <div class="tiers">${c.tiers.map(([t,p])=>`<div><small>${t}</small><b>${fmt2(p)}</b></div>`).join('')}</div></div>`
+    :`<div class="crow"><div class="tx"><div class="nm">${c.nm}</div><div class="cd">${plate(c)}</div></div>
+      <div class="pr"><b>${fmt2(c.p)}</b><em>บาท/ปี</em></div></div>`;
   $('ctpList').innerHTML=`
-    <button class="ctpcov" id="ctpCovBtn"><div class="tx"><b>พ.ร.บ. คุ้มครองคนเจ็บ / เสียชีวิต สูงสุด 504,000 บาท/คน</b>ผู้ขับขี่ ผู้โดยสาร และคนเดินถนน</div><span class="ar">ดูความคุ้มครอง ›</span></button>
+    <button class="ctpcov" id="ctpCovBtn"><b>พ.ร.บ. คุ้มครองคนเจ็บ / เสียชีวิต สูงสุด 504,000 บาท/คน</b><span>ผู้ขับขี่ ผู้โดยสาร และคนเดินถนน</span><span class="ar">ดูความคุ้มครอง ›</span></button>
     <div class="ctpg">เบี้ย พ.ร.บ. รถบ้าน</div>${CTP.filter(c=>c.g==='p').map(row).join('')}
     <div class="ctpg">รถรับจ้าง / ให้เช่า</div>${CTP.filter(c=>c.g==='h').map(row).join('')}
     <div class="tro1"><b>ต้องตรวจสภาพ (ตรอ.) ก่อนต่อภาษีปี ${TRO.year}:</b> รถยนต์จดทะเบียนปี ${TRO.car} หรือเก่ากว่า · มอเตอร์ไซค์ปี ${TRO.moto} หรือเก่ากว่า</div>
-    <a class="cta" style="margin:14px 0 0" href="${lineUrl('สวัสดีครับ สนใจต่อภาษีรถ + พ.ร.บ. (แนบรูปป้ายภาษี/เล่มทะเบียน) รบกวนเช็คยอดให้หน่อยครับ')}" target="_blank" rel="noopener">ส่งรูปป้ายภาษีทาง LINE · ตัวแทนเช็คยอดให้</a>`;
+    <a class="cta" href="${lineUrl('สวัสดีครับ สนใจต่อภาษีรถ + พ.ร.บ. (แนบรูปป้ายภาษี/เล่มทะเบียน) รบกวนเช็คยอดให้หน่อยครับ')}" target="_blank" rel="noopener">ส่งรูปป้ายภาษีทาง LINE<small>ตัวแทนเช็คยอดให้</small></a>`;
   $('ctpCovBtn').onclick=openCtp;
 }
 function openCtp(){
@@ -468,7 +472,7 @@ function openPlan(id){
     ${p.tag?`<span class="tagb${p.tag==='NEW'?'':' best'}">${p.tag}</span>`:''}
     <h3>${p.nm}</h3>
     <div class="for">${CLS[p.cls][0]} · ${CLS[p.cls][1]}</div>
-    <div class="pbox"><small>เบี้ยประกันสำหรับรถคุณ</small><b style="font-size:22px">${pr.txt}</b>${p.note?`<div class="nt">${p.note}</div>`:''}</div>
+    <div class="pbox"><small>เบี้ยประกันสำหรับรถคุณ</small>${pr.sh}${p.note?`<div class="nt">${p.note}</div>`:''}</div>
     <h4>จุดเด่นของแผนนี้</h4>
     <ul class="cov">${p.li.map(t=>`<li><i>✓</i><span>${t}</span></li>`).join('')}</ul>
     <h4>คุ้มครองกรณีไหนบ้าง</h4>
@@ -486,10 +490,10 @@ function ctpBox(){
   const t=ctpFor(S.veh), many=t.length>1;
   const msg=`สวัสดีครับ สนใจต่อ พ.ร.บ. + ภาษีรถ\n• รถ: ${vehNm()}\n• เบี้ย พ.ร.บ.: ${t.map(([n,p])=>n+' '+fmt2(p)).join(' / ')} บาท\nรบกวนเช็คยอดให้หน่อยครับ`;
   return `<div class="ctpbox">
-    <div class="hd">+ พ.ร.บ. ${vehNm()}<small>ต้องมีทุกคันก่อนต่อภาษี · ทำพร้อมประกันรถได้เลย</small></div>
+    <div class="hd">+ พ.ร.บ. ${vehNm()}<small>ต้องมีทุกคันก่อนต่อภาษี ทำพร้อมประกันได้เลย</small></div>
     <div class="bd${many?' g2':''}">${t.map(([n,p])=>`<div class="pc"><small>${n}</small><b>${fmt2(p)}</b><span>บาท/ปี</span></div>`).join('')}</div>
     <div class="cv">คุ้มครองคนเจ็บ / เสียชีวิต สูงสุด <b>504,000 บาท/คน</b></div>
-    <div class="bt"><button class="ctpCov">ดูความคุ้มครอง</button><a href="${lineUrl(msg)}" target="_blank" rel="noopener">ทัก LINE ต่อเลย</a></div>
+    <div class="acts"><button class="btn ctpCov">ดูความคุ้มครอง ›</button><a class="btn ln" href="${lineUrl(msg)}" target="_blank" rel="noopener">ทัก LINE ต่อเลย</a></div>
   </div>`;
 }
 
@@ -538,8 +542,8 @@ function renderResults(){
         <div class="top"><div><div class="pn">${p.nm}</div>${p.sub?`<div class="ps">${p.sub}</div>`:''}</div>${p.tag?`<span class="tagb${p.tag==='NEW'?'':' best'}">${p.tag}</span>`:''}</div>
         ${priceHtml}
         <ul>${p.li.map(x=>`<li><i>✓</i><span>${x}</span></li>`).join('')}</ul>
-        <button class="covb" data-plan="${p.id}">ดูความคุ้มครอง ›</button>
-        <a class="cta" href="${lineUrl(msg)}" target="_blank" rel="noopener">สนใจแผนนี้ · ทัก LINE</a>
+        <div class="acts"><button class="btn covb" data-plan="${p.id}">ดูความคุ้มครอง ›</button>
+        <a class="btn ln" href="${lineUrl(msg)}" target="_blank" rel="noopener">สนใจ · ทัก LINE</a></div>
       </div>`;
     });
     h+='</div>';
@@ -554,11 +558,14 @@ function priceOf(p){
   const age=AGE_MAX[S.age];
   if(p.duo){
     const dealerOk = !p.dealerAgeMax || age<=p.dealerAgeMax;
-    return {html:`<div class="duo"><div><small>ซ่อมอู่</small><b>${fmt(p.duo[0])}</b></div>${dealerOk?`<div><small>ซ่อมห้าง</small><b>${fmt(p.duo[1])}</b></div>`:`<div><small>ซ่อมห้าง</small><span style="font-size:13px;color:var(--tm)">รถอายุเกิน ${p.dealerAgeMax} ปี</span></div>`}</div><div class="note">บาท/ปี</div>`,
+    const duo=u=>`<div><small>ซ่อมอู่${u}</small><b>${fmt(p.duo[0])}</b></div><div><small>ซ่อมห้าง${dealerOk?u:''}</small>${dealerOk?`<b>${fmt(p.duo[1])}</b>`:`<span>รถอายุเกิน ${p.dealerAgeMax} ปี</span>`}</div>`;
+    return {html:`<div class="duo">${duo(' (บาท/ปี)')}</div>`,
+      sh:`<div class="pd">${duo(' (บาท/ปี)')}</div>`,
       txt:`ซ่อมอู่ ${fmt(p.duo[0])}${dealerOk?' / ซ่อมห้าง '+fmt(p.duo[1]):''} บาท`};
   }
   const pr=p.byVeh?p.byVeh[S.veh]:p.price;
   return {html:`<div class="price">${p.from?'<span class="fr">เริ่มต้น</span>':''}<b>${fmt(pr)}</b><span>บาท/ปี</span></div>${p.note?`<div class="note">${p.note}</div>`:''}`,
+    sh:`${p.from?'<span>เริ่มต้น</span> ':''}<b>${fmt(pr)}</b> <span>บาท/ปี</span>`,
     txt:(p.from?'เริ่มต้น ':'')+fmt(pr)+' บาท'};
 }
 
