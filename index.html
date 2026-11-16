@@ -141,6 +141,10 @@
   .tro p{margin:8px 0 0;font-size:13px;color:var(--tm)}
   .steps4{margin:12px 0 0;padding-left:20px;font-size:14px}
   .steps4 li{padding:3px 0}
+  .dlt{display:flex;gap:10px;align-items:center;margin-top:12px;border:1.5px solid var(--dg);border-radius:12px;padding:10px 12px;text-decoration:none;color:var(--tx)}
+  .dlt .tx{flex:1;font-size:13px;color:var(--tm);line-height:1.45}
+  .dlt .tx b{display:block;font-size:15px;color:var(--dg)}
+  .dlt .ar{font-weight:800;color:var(--dg);font-size:18px}
   .ctpme{display:block;margin-top:12px;background:#f3f7f4;border:1px solid var(--line);border-radius:12px;padding:10px 12px;text-decoration:none;color:var(--tx);font-size:14px}
   .ctpme b{color:var(--dg)}
   .ctpme span{color:var(--em);font-weight:700;white-space:nowrap}
@@ -421,6 +425,7 @@ function renderCtp(){
       <li>ถ้ารถอายุถึงเกณฑ์ ตรวจสภาพที่ ตรอ. ก่อน</li>
       <li>รับป้ายภาษีใหม่ พร้อมกรมธรรม์ พ.ร.บ.</li>
     </ol>
+    <a class="dlt" href="https://eservice.dlt.go.th/esvapp/esv/ebk/esv02q002/" target="_blank" rel="noopener"><div class="tx"><b>เช็คค่าภาษีรถของคุณเอง</b>เว็บกรมการขนส่งทางบก · ใช้เลขทะเบียนรถ + เลขบัตรประชาชนผู้ครอบครอง</div><span class="ar">›</span></a>
     <a class="cta" style="margin:14px 0 0" href="${lineUrl('สวัสดีครับ สนใจต่อภาษีรถ + พ.ร.บ. รบกวนเช็คยอดให้หน่อยครับ')}" target="_blank" rel="noopener">ทัก LINE ต่อภาษี + พ.ร.บ.</a>`;
 }
 function ctpFor(v){
