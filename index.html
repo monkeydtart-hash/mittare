@@ -145,6 +145,20 @@
   .dlt .tx{flex:1;font-size:13px;color:var(--tm);line-height:1.45}
   .dlt .tx b{display:block;font-size:15px;color:var(--dg)}
   .dlt .ar{font-weight:800;color:var(--dg);font-size:18px}
+  .crow.plain{padding:9px 12px;margin-bottom:6px}
+  .crow .sub2{font-size:12.5px;color:var(--tm);margin-top:3px;line-height:1.5}
+  .ctpcov{display:flex;gap:10px;align-items:center;width:100%;text-align:left;background:var(--dg);color:#fff;border:0;border-radius:12px;padding:12px 14px;margin-bottom:12px;font-size:14px}
+  .ctpcov .tx{flex:1;line-height:1.45}
+  .ctpcov b{display:block;font-size:16px;color:var(--gd2)}
+  .ctpcov .ar{font-weight:800;font-size:13px;white-space:nowrap;background:rgba(255,255,255,.14);border-radius:999px;padding:5px 10px}
+  .tro1{background:var(--cr);border:1px solid #eadfc2;border-left:4px solid var(--gd);border-radius:10px;padding:9px 12px;margin:10px 0 0;font-size:13.5px;line-height:1.5}
+  .tro1 b{color:var(--gdk)}
+  .covb{display:block;width:calc(100% - 28px);margin:0 14px 8px;background:#fff;border:1.5px solid var(--dg);color:var(--dg);border-radius:12px;padding:10px;font-weight:800;font-size:15px}
+  .cvt{width:100%;border-collapse:collapse;font-size:14px;margin-top:4px}
+  .cvt td{padding:8px 4px;border-bottom:1px dashed #e6ece8;vertical-align:top;line-height:1.4}
+  .cvt td:last-child{text-align:right;white-space:nowrap;font-weight:800;width:84px}
+  .cvt .y{color:var(--em)}.cvt .n{color:#b3241a}.cvt .m{color:var(--gdk);font-size:12.5px}
+  .sh h4{margin-top:14px}
   .ctpme{display:block;margin-top:12px;background:#f3f7f4;border:1px solid var(--line);border-radius:12px;padding:10px 12px;text-decoration:none;color:var(--tx);font-size:14px}
   .ctpme b{color:var(--dg)}
   .ctpme span{color:var(--em);font-weight:700;white-space:nowrap}
@@ -285,13 +299,13 @@ const CAR=[
    li:['ตอบโจทย์คนใช้รถน้อย','คุ้มครอง ป.1 ตลอดปี','ไม่จำกัดอายุรถ เพียงเลขไมล์เข้าเงื่อนไข']},
   {id:'ev1',cls:'1',nm:'ป.1 ซ่อมห้าง รถยนต์พลังงานไฟฟ้า',tag:'BEST SELLER',veh:['ev'],price:18800,from:1,note:'ทุนประกัน 200,000 บาท',
    li:['ไม่มีค่าเสียหายส่วนแรก','คุ้มครองเครื่องชาร์จและสายชาร์จ สูงสุด 20,000 บาท','คุ้มครองแบตเตอรี่ ตามอายุการใช้งาน (ตามเงื่อนไขกรมธรรม์)']},
-  {id:'p2dealer',cls:'2+',nm:'มิตรแท้เพิ่มพูน 2+ ซ่อมห้าง',tag:'NEW',hot:1,sub:'ราคาพิเศษ ฉลอง 80 ปีมิตรแท้',veh:['sedan','pickup','suv'],price:8880,from:1,ageMax:10,
+  {id:'p2dealer',cls:'2+',cov:{4:1},nm:'มิตรแท้เพิ่มพูน 2+ ซ่อมห้าง',tag:'NEW',hot:1,sub:'ราคาพิเศษ ฉลอง 80 ปีมิตรแท้',veh:['sedan','pickup','suv'],price:8880,from:1,ageMax:10,
    li:['ซ่อมห้าง (ศูนย์บริการมาตรฐาน)','คุ้มครองอายุรถสูงสุด 10 ปี','คุ้มครองภัยธรรมชาติ 20,000 บาท']},
   {id:'p2',cls:'2+',nm:'มิตรแท้เพิ่มพูน 2+',veh:['sedan','pickup','suv'],price:5400,from:1,note:'ทุนประกัน 100,000 บาท',
    li:['คุ้มครองบุคคลภายนอก สูงถึง 1 ล้านบาท','คุ้มครองรถสูญหาย / ไฟไหม้','ซ่อมรถเมื่อชนกับยานพาหนะทางบก']},
   {id:'p3',cls:'3+',nm:'มิตรแท้เพิ่มพูน 3+',veh:['sedan','pickup','suv'],price:4200,from:1,note:'ทุนประกัน 100,000 บาท',
    li:['คุ้มครองบุคคลภายนอก สูงสุด 1 ล้านบาท','ซ่อมรถเมื่อชนกับยานพาหนะทางบก']},
-  {id:'van3',cls:'3+',nm:'มิตรแท้ ป.3+ รถตู้เชิงพาณิชย์',veh:['van'],price:12000,from:1,note:'ทุนประกัน 100,000 บาท',
+  {id:'van3',cls:'3+',cov:{4:1},nm:'มิตรแท้ ป.3+ รถตู้เชิงพาณิชย์',veh:['van'],price:12000,from:1,note:'ทุนประกัน 100,000 บาท',
    li:['คุ้มครองตัวรถเหมือน ป.1 แต่เบี้ยต่ำ','ฟรี! เพิ่มความคุ้มครองน้ำท่วม']},
   {id:'vk',cls:'3',nm:'มิตรแท้วีคูณ',tag:'BEST SELLER',veh:['sedan','pickup'],byVeh:{sedan:2299,pickup:3200},
    li:['ประกันรถยนต์ ป.3','เบี้ยถูกเป็นพิเศษ']},
@@ -402,31 +416,49 @@ const CTP=[
 const TRO={year:2569,car:2562,moto:2564};
 
 function renderCtp(){
-  const row=c=>{
-    const msg=`สวัสดีครับ สนใจต่อ พ.ร.บ. + ภาษีรถ
-• รถ: ${c.nm} (${c.code})
-• เบี้ย พ.ร.บ.: ${c.p?fmt2(c.p)+' บาท':'ตามขนาด cc'}
-รบกวนเช็คยอดรวมให้หน่อยครับ`;
-    return `<a class="crow" href="${lineUrl(msg)}" target="_blank" rel="noopener"><div class="tx">
+  const row=c=>`<div class="crow plain"><div class="tx">
       <div class="nm">${c.nm}</div>
-      <div class="cd"><span class="plate${c.plate[2]?' y':''}" style="color:${c.plate[1]}">${c.plate[0]}</span>${c.code}</div>
-      ${c.tiers?`<div class="tiers">${c.tiers.map(([t,p])=>`<div><small>${t}</small><b>${fmt2(p)}</b></div>`).join('')}</div>`:''}
-    </div>${c.p?`<div class="pr"><b>${fmt2(c.p)}</b><em>บาท/ปี</em></div>`:''}</a>`;
-  };
+      ${c.tiers?`<div class="sub2">${c.tiers.map(([t,p])=>`${t} <b>${fmt2(p)}</b>`).join(' · ')}</div>`:`<div class="cd"><span class="plate${c.plate[2]?' y':''}" style="color:${c.plate[1]}">${c.plate[0]}</span></div>`}
+    </div>${c.p?`<div class="pr"><b>${fmt2(c.p)}</b><em>บาท/ปี</em></div>`:''}</div>`;
   $('ctpList').innerHTML=`
-    <div class="ctpg">เบี้ย พ.ร.บ. รถส่วนบุคคล</div>${CTP.filter(c=>c.g==='p').map(row).join('')}
+    <button class="ctpcov" id="ctpCovBtn"><div class="tx"><b>พ.ร.บ. คุ้มครองคนเจ็บ / เสียชีวิต สูงสุด 504,000 บาท/คน</b>ผู้ขับขี่ ผู้โดยสาร และคนเดินถนน</div><span class="ar">ดูความคุ้มครอง ›</span></button>
+    <div class="ctpg">เบี้ย พ.ร.บ. รถบ้าน</div>${CTP.filter(c=>c.g==='p').map(row).join('')}
     <div class="ctpg">รถรับจ้าง / ให้เช่า</div>${CTP.filter(c=>c.g==='h').map(row).join('')}
-    <div class="tro"><h4>รถที่ต้องตรวจสภาพ (ตรอ.) ก่อนต่อภาษี ปี ${TRO.year}</h4>
-      <div class="g2"><div><small>รถยนต์ · อายุ 7 ปีเต็ม</small><b>จดทะเบียนปี ${TRO.car}<br>หรือเก่ากว่า</b></div><div><small>มอเตอร์ไซค์ · อายุ 5 ปีเต็ม</small><b>จดทะเบียนปี ${TRO.moto}<br>หรือเก่ากว่า</b></div></div>
-    </div>
-    <ol class="steps4">
-      <li>ทัก LINE ส่งรูปป้ายภาษีเดิม หรือหน้าเล่มทะเบียนรถ</li>
-      <li>ตัวแทนแจ้งยอดรวม พ.ร.บ. + ค่าภาษีรถ</li>
-      <li>ถ้ารถอายุถึงเกณฑ์ ตรวจสภาพที่ ตรอ. ก่อน</li>
-      <li>รับป้ายภาษีใหม่ พร้อมกรมธรรม์ พ.ร.บ.</li>
-    </ol>
-    <a class="dlt" href="https://eservice.dlt.go.th/esvapp/esv/ebk/esv02q002/" target="_blank" rel="noopener"><div class="tx"><b>เช็คค่าภาษีรถของคุณเอง</b>เว็บกรมการขนส่งทางบก · ใช้เลขทะเบียนรถ + เลขบัตรประชาชนผู้ครอบครอง</div><span class="ar">›</span></a>
-    <a class="cta" style="margin:14px 0 0" href="${lineUrl('สวัสดีครับ สนใจต่อภาษีรถ + พ.ร.บ. รบกวนเช็คยอดให้หน่อยครับ')}" target="_blank" rel="noopener">ทัก LINE ต่อภาษี + พ.ร.บ.</a>`;
+    <div class="tro1"><b>ต้องตรวจสภาพ (ตรอ.) ก่อนต่อภาษีปี ${TRO.year}:</b> รถยนต์จดทะเบียนปี ${TRO.car} หรือเก่ากว่า · มอเตอร์ไซค์ปี ${TRO.moto} หรือเก่ากว่า</div>
+    <a class="cta" style="margin:14px 0 0" href="${lineUrl('สวัสดีครับ สนใจต่อภาษีรถ + พ.ร.บ. (แนบรูปป้ายภาษี/เล่มทะเบียน) รบกวนเช็คยอดให้หน่อยครับ')}" target="_blank" rel="noopener">ส่งรูปป้ายภาษีทาง LINE · ตัวแทนเช็คยอดให้</a>`;
+  $('ctpCovBtn').onclick=openCtp;
+}
+function openCtp(){
+  const L=a=>`<ul class="cov">${a.map(t=>`<li><i>✓</i><span>${t}</span></li>`).join('')}</ul>`;
+  showSheet(`
+    <h3>พ.ร.บ. คุ้มครองอะไรบ้าง?</h3>
+    <div class="for">คุ้มครอง “คน” ที่บาดเจ็บหรือเสียชีวิตจากรถ ทั้งผู้ขับขี่ ผู้โดยสาร และคนเดินถนน (ไม่คุ้มครองตัวรถและทรัพย์สิน)</div>
+    <div class="pbox"><small>ความคุ้มครองสูงสุด</small><b>504,000</b> <span>บาท/คน</span></div>
+    <h4>1) ค่าเสียหายเบื้องต้น — ได้ทันที ไม่ต้องรอพิสูจน์ถูกผิด</h4>
+    ${L(['ค่ารักษาพยาบาล ตามจริง ไม่เกิน 30,000 บาท','เสียชีวิต สูญเสียอวัยวะ หรือทุพพลภาพถาวร 35,000 บาท','บาดเจ็บแล้วเสียชีวิตภายหลัง รวมไม่เกิน 65,000 บาท'])}
+    <h4>2) ค่าสินไหมทดแทน — เมื่อพิสูจน์แล้วว่าไม่ใช่ฝ่ายผิด</h4>
+    ${L(['ค่ารักษาพยาบาล ตามจริง ไม่เกิน 80,000 บาท','เสียชีวิต หรือทุพพลภาพถาวร 500,000 บาท','สูญเสียอวัยวะ 200,000 – 500,000 บาท (ตามอวัยวะ)','ชดเชยนอนโรงพยาบาล วันละ 200 บาท ไม่เกิน 20 วัน'])}
+    <div class="fine">อัตราตามประกาศ คปภ. ต่อผู้ประสบภัย 1 คน (ค่าสินไหมทดแทนรวมค่าเสียหายเบื้องต้นแล้ว) · ผู้ขับขี่ที่เป็นฝ่ายผิดได้เฉพาะค่าเสียหายเบื้องต้น · ต้องมี พ.ร.บ. ก่อนต่อภาษีรถทุกครั้ง</div>`,
+    'สวัสดีครับ สนใจต่อ พ.ร.บ. + ภาษีรถ รบกวนเช็คยอดให้หน่อยครับ');
+}
+/* ตารางความคุ้มครองตามชั้นประกัน: 1=คุ้มครอง 0=ไม่คุ้มครอง 2=ตามแผน · แผนไหนต่างจากนี้ใส่ cov:{index:ค่า} */
+const COVR=['ซ่อมรถเรา เมื่อชนกับรถคันอื่น (มีคู่กรณี)','ซ่อมรถเรา กรณีไม่มีคู่กรณี เช่น ชนเสา ชนกำแพง','รถหาย','ไฟไหม้','น้ำท่วม / ภัยธรรมชาติ','ชีวิต ร่างกาย ทรัพย์สินของคู่กรณี'];
+const COVC={'1':[1,1,1,1,2,1],'2+':[1,0,1,1,2,1],'3+':[1,0,0,0,0,1],'3':[0,0,0,0,0,1]};
+function openPlan(id){
+  const p=CAR.find(x=>x.id===id), pr=priceOf(p), cv=COVC[p.cls].slice();
+  if(p.cov) Object.entries(p.cov).forEach(([k,v])=>cv[k]=v);
+  const mk=v=>v===1?'<span class="y">✓ คุ้มครอง</span>':v===2?'<span class="m">ตามแผน</span>':'<span class="n">✕ ไม่คุ้มครอง</span>';
+  showSheet(`
+    ${p.tag?`<span class="tagb${p.tag==='NEW'?'':' best'}">${p.tag}</span>`:''}
+    <h3>${p.nm}</h3>
+    <div class="for">${CLS[p.cls][0]} · ${CLS[p.cls][1]}</div>
+    <div class="pbox"><small>เบี้ยประกันสำหรับรถคุณ</small><b style="font-size:22px">${pr.txt}</b>${p.note?`<div class="nt">${p.note}</div>`:''}</div>
+    <h4>จุดเด่นของแผนนี้</h4>
+    <ul class="cov">${p.li.map(t=>`<li><i>✓</i><span>${t}</span></li>`).join('')}</ul>
+    <h4>คุ้มครองกรณีไหนบ้าง</h4>
+    <table class="cvt">${COVR.map((r,i)=>`<tr><td>${r}</td><td>${mk(cv[i])}</td></tr>`).join('')}</table>
+    <div class="fine">ตารางเป็นภาพรวมของ${CLS[p.cls][0]} ทุนประกันและวงเงินจริงเป็นไปตามตารางกรมธรรม์ของแต่ละแผน ทัก LINE ขอรายละเอียดเต็มจากตัวแทนได้</div>`,
+    `สวัสดีครับ สนใจประกันรถ\n• แผน: ${p.nm}\n• รถ: ${vehNm()} อายุ ${ageNm()}${S.veh==='moto'?' ('+S.cc+' cc)':''}\n• เบี้ยที่เห็น: ${pr.txt}\nรบกวนขอรายละเอียดความคุ้มครองครับ`);
 }
 function ctpFor(v){
   if(v==='moto') return 'เริ่มต้น <b>161.57</b> บาท (ตามขนาด cc)';
@@ -474,21 +506,13 @@ function renderResults(){
     const ps=list.filter(p=>p.cls===c); if(!ps.length) return;
     h+=`<div class="group">${CLS[c][0]} <small>${CLS[c][1]}</small></div><div class="plans">`;
     ps.forEach(p=>{
-      let priceHtml, priceTxt;
-      if(p.duo){
-        const dealerOk = !p.dealerAgeMax || age<=p.dealerAgeMax;
-        priceHtml=`<div class="duo"><div><small>ซ่อมอู่</small><b>${fmt(p.duo[0])}</b></div>${dealerOk?`<div><small>ซ่อมห้าง</small><b>${fmt(p.duo[1])}</b></div>`:`<div><small>ซ่อมห้าง</small><span style="font-size:13px;color:var(--tm)">รถอายุเกิน ${p.dealerAgeMax} ปี</span></div>`}</div><div class="note">บาท/ปี</div>`;
-        priceTxt=`ซ่อมอู่ ${fmt(p.duo[0])}${dealerOk?' / ซ่อมห้าง '+fmt(p.duo[1]):''} บาท`;
-      } else {
-        const pr=p.byVeh?p.byVeh[S.veh]:p.price;
-        priceHtml=`<div class="price">${p.from?'<span class="fr">เริ่มต้น</span>':''}<b>${fmt(pr)}</b><span>บาท/ปี</span></div>${p.note?`<div class="note">${p.note}</div>`:''}`;
-        priceTxt=(p.from?'เริ่มต้น ':'')+fmt(pr)+' บาท';
-      }
+      const {html:priceHtml, txt:priceTxt}=priceOf(p);
       const msg=`สวัสดีครับ สนใจประกันรถ\n• แผน: ${p.nm}\n• รถ: ${vehNm()} อายุ ${ageNm()}${S.veh==='moto'?' ('+S.cc+' cc)':''}\n• เบี้ยที่เห็น: ${priceTxt}\nรบกวนเช็คราคาให้หน่อยครับ`;
       h+=`<div class="plan${p.hot?' hot':''}">
         <div class="top"><div><div class="pn">${p.nm}</div>${p.sub?`<div class="ps">${p.sub}</div>`:''}</div>${p.tag?`<span class="tagb${p.tag==='NEW'?'':' best'}">${p.tag}</span>`:''}</div>
         ${priceHtml}
         <ul>${p.li.map(x=>`<li><i>✓</i><span>${x}</span></li>`).join('')}</ul>
+        <button class="covb" data-plan="${p.id}">ดูความคุ้มครอง ›</button>
         <a class="cta" href="${lineUrl(msg)}" target="_blank" rel="noopener">สนใจแผนนี้ · ทัก LINE</a>
       </div>`;
     });
@@ -497,6 +521,18 @@ function renderResults(){
   h+=`<div class="hint">ราคายังไม่รวม พ.ร.บ. · ราคา “เริ่มต้น” ขึ้นกับรุ่นรถและทุนประกัน ทัก LINE ให้ตัวแทนเช็คราคาจริงได้ฟรี</div>`;
   h+=`<a class="ctpme" href="#ctp">พ.ร.บ. ${vehNm()}: ${ctpFor(S.veh)} · <span>ต่อภาษีพร้อมกัน ›</span></a>`;
   $('results').innerHTML=h;
+  $('results').querySelectorAll('.covb').forEach(b=>b.onclick=()=>openPlan(b.dataset.plan));
+}
+function priceOf(p){
+  const age=AGE_MAX[S.age];
+  if(p.duo){
+    const dealerOk = !p.dealerAgeMax || age<=p.dealerAgeMax;
+    return {html:`<div class="duo"><div><small>ซ่อมอู่</small><b>${fmt(p.duo[0])}</b></div>${dealerOk?`<div><small>ซ่อมห้าง</small><b>${fmt(p.duo[1])}</b></div>`:`<div><small>ซ่อมห้าง</small><span style="font-size:13px;color:var(--tm)">รถอายุเกิน ${p.dealerAgeMax} ปี</span></div>`}</div><div class="note">บาท/ปี</div>`,
+      txt:`ซ่อมอู่ ${fmt(p.duo[0])}${dealerOk?' / ซ่อมห้าง '+fmt(p.duo[1]):''} บาท`};
+  }
+  const pr=p.byVeh?p.byVeh[S.veh]:p.price;
+  return {html:`<div class="price">${p.from?'<span class="fr">เริ่มต้น</span>':''}<b>${fmt(pr)}</b><span>บาท/ปี</span></div>${p.note?`<div class="note">${p.note}</div>`:''}`,
+    txt:(p.from?'เริ่มต้น ':'')+fmt(pr)+' บาท'};
 }
 
 function renderOthers(){
@@ -522,6 +558,10 @@ function openSheet(i){
     <div class="fine">เงื่อนไขและความคุ้มครองเป็นไปตามรายละเอียดในกรมธรรม์ ควรทำความเข้าใจก่อนตัดสินใจทำประกันทุกครั้ง</div>`;
   $('shLine').href=lineUrl(msg);
   $('sheet').classList.add('on'); document.body.style.overflow='hidden';
+}
+function showSheet(html,msg){
+  $('shBody').innerHTML=html; $('shLine').href=lineUrl(msg);
+  $('sheet').classList.add('on'); document.body.style.overflow='hidden'; $('sheet').querySelector('.sh').scrollTop=0;
 }
 function closeSheet(){ $('sheet').classList.remove('on'); document.body.style.overflow=''; }
 $('sheet').addEventListener('click',e=>{ if(e.target.id==='sheet') closeSheet(); });
